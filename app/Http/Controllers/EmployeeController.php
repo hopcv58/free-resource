@@ -21,7 +21,8 @@ class EmployeeController extends Controller
     {
         $levels = config('resources.level');
         $postions = config('resources.position');
-        return view('employee.create', compact('levels', 'postions'));
+        $tabActive = 'resource';
+        return view('employee.create', compact('levels', 'postions', 'tabActive'));
     }
 
     public function store(Request $request)
@@ -56,7 +57,8 @@ class EmployeeController extends Controller
         $employee = Employee::find($id);
         $levels = config('resources.level');
         $postions = config('resources.position');
-        return view('employee.edit', compact('employee', 'levels', 'postions'));
+        $tabActive = 'resource';
+        return view('employee.edit', compact('employee', 'levels', 'postions', 'tabActive'));
     }
 
     public function update(Request $request, $id)

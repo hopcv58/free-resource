@@ -19,4 +19,10 @@ class EmployeeRepository extends Repository
     {
         $this->eployee = new Employee();
     }
+
+    public function getList()
+    {
+        $query = Employee::all();
+        return $query;
+    }
 }

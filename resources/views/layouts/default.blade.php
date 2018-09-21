@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>CreativeCV-@yield('title')</title>
+    <title>FreeResource-@yield('title')</title>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
@@ -29,7 +29,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                @include('parts.sidebar')
+                @if(isset($tabActive) && $tabActive === 'resource')
+                    @include('resource.sidebar')
+                @else
+                    @include('parts.sidebar')
+                @endif
             </div>
             <div class="col-md-9">
                 @yield('content')

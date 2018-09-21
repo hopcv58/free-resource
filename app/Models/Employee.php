@@ -14,7 +14,6 @@ class Employee extends Model
 
     protected $fillable = ['name', 'position', 'age', 'level', 'experience', 'skill', 'free_end', 'detail',
         'certificate', 'price', 'company_id', 'status', 'negotiating_id', 'rented_id'];
-
     protected $casts = [
         'experience' => 'array',
         'price' => 'array',

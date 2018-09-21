@@ -9,7 +9,7 @@
             </div>
             <div class="col-md-12 main-menu">
                 <ul>
-                    <li><a href="{{route('home.myResource')}}">My resource</a></li>
+                    <li><a href="/resource">My resource</a></li>
                     <li><a href="{{route('home.findJob')}}">Find job</a></li>
                     <li><a href="{{route('home.device')}}">Device</a></li>
                     <li><a href="{{route('home.employ')}}">Employ</a></li>
