@@ -1,0 +1,59 @@
+.main-wrap{
+    background-color: #f9fafb;
+    padding: 30px 0;
+}
+.lever-employ{
+    background-color: white;
+    border: 1px solid #dfe3e8;
+    border-radius: 3px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 20px;
+}
+.employ-item{
+    border: 1px solid #dfe3e8;
+    border-radius: 3px;
+    padding: 15px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+.employ-item .thumbnail{
+    border: none;
+    box-shadow: none!important;
+}
+.employ-item .thumbnail img {
+    width: 90px!important;
+    height: 90px!important;
+
+}
+.main-menu{
+    text-align: right;
+}
+.main-menu ul li{
+    float: right;
+    list-style: none;
+    /*margin-left: 30px;*/
+    padding: 10px 20px;
+    cursor: pointer;
+}
+.main-menu ul li:hover{
+    background-color: #5d9026;
+}
+.main-menu ul li a{
+    text-decoration: none!important;
+}
+.level-title, .exp-employ{
+    color: #e46c0a;
+}
+.hourly-rate{
+    font-size: 24px;
+}
+.skill-employ{
+    font-weight: normal;
+}
+.btn-contact-employ{
+    margin-top: 20px;
+}
+.hourly-rate-negotiate{
+    font-size: 16px;
+}

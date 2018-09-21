@@ -11,15 +11,11 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/base', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('workers', 'WorkerController');
-Route::group(['prefix' => 'api'], function () {
-    Route::resource('worker', 'WorkerAPIController');
-    Route::resource('transaction', 'TransactionAPIController');
-});
+Route::get('/', 'HomeController@index')->name('home.employ');
+Route::get('/device', 'DeviceController@index')->name('home.device');
+Route::get('/findJob', 'HomeController@findJob')->name('home.findJob');
+Route::get('/myResource', 'HomeController@myResource')->name('home.myResource');
