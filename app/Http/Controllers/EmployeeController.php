@@ -19,7 +19,9 @@ class EmployeeController extends Controller
 
     public function create()
     {
-        return view('employee.create');
+        $levels = config('resources.level');
+        $postions = config('resources.position');
+        return view('employee.create', compact('levels', 'postions'));
     }
 
     public function store(Request $request)
@@ -41,19 +43,41 @@ class EmployeeController extends Controller
         return view('employ.index');
     }
 
-    public function show()
+    public function show($id)
     {
-        return view('home');
+        $employee = Employee::find($id);
+        $levels = config('resources.level');
+        $postions = config('resources.position');
+        return view('employee.detail', compact('employee', 'levels', 'postions'));
     }
 
-    public function edit()
+    public function edit($id)
     {
-        return view('home');
+        $employee = Employee::find($id);
+        $levels = config('resources.level');
+        $postions = config('resources.position');
+        return view('employee.edit', compact('employee', 'levels', 'postions'));
     }
 
-    public function update()
+    public function update(Request $request, $id)
     {
-        return view('home');
+        $levels = config('resources.level');
+        $postions = config('resources.position');
+        $input = [
+            'experience->exp_num' => $request->exp_num,
+            'experience->exp_unit' => $request->exp_unit,
+            'price->price_num' => $request->price_num,
+            'price->price_unit' => $request->price_unit,
+            'name' => $request->name,
+            'position' => $request->position,
+            'age' => $request->age,
+            'level' => $request->level,
+            'skill' => $request->detail,
+            'certificate' => $request->certificate,
+        ];
+        $result = Employee::where('id', $id)->update($input);
+        $employee = Employee::find($id);
+        return view('employee.detail', compact('employee', 'levels', 'postions'));
     }
 
     public function destroy()

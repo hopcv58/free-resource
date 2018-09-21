@@ -1,17 +1,22 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Dashboard</div>
-
-                    <div class="panel-body">
-                        You are logged in!
-                    </div>
-                </div>
+    <div class="box ui-draggable ui-droppable">
+        <div class="box-header">
+            <div class="box-name ui-draggable-handle">
+                <i class="fa fa-edit"></i>
+                <span>Add New Campaign</span>
+            </div>
+            <div class="box-icons"></div>
+            <div class="no-move"></div>
+        </div>
+        <div class="box-content" style="display: block;">
+            <div class="form-horizontal">
+                <form method='POST' action="{{route('employee.update', $employee->id)}}">
+                    <input type="hidden" name="_method" value="PUT">
+                    @include('employee.form')
+                </form>
             </div>
         </div>
     </div>
-@endsection
+@stop
