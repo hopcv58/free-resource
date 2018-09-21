@@ -20,9 +20,9 @@ class EmployeeRepository extends Repository
         $this->eployee = new Employee();
     }
 
-    public function getList()
+    public function getList($condition)
     {
-        $query = Employee::all();
+        $query = Employee::where($condition )->get();
         return $query;
     }
 }

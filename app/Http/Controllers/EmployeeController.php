@@ -16,8 +16,9 @@ class EmployeeController extends Controller
     {
         $employs = Employee::where('status', 0 )->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+        $tabActive = 'employ';
 
-        return view('employee.index', compact('employs', 'colorAvt'));
+        return view('employee.index', compact('employs', 'colorAvt' , 'tabActive'));
     }
 
     public function create()

@@ -14,11 +14,12 @@ class ResourceController extends Controller
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         $tabActive = 'resource';
 
-        $employees = $this->employeeRepo->getList();
+        $status = $request->status;
+        $employees = $this->employeeRepo->getList(['status' => $status]);
 
         return view('resource.index', compact('tabActive', 'employees'));
     }

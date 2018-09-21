@@ -14,4 +14,12 @@ return [
         'designer' => 'Designer',
         'comtor' => 'Comtor'
     ],
+    'language' => [
+        'dev'=> ['PHP', 'C#', '.NET', 'JAVA'],
+        'comtor' => [],
+        'brse' => [],
+        'teamlead' => [],
+        'qa' => [],
+        'designer' => []
+    ]
 ];

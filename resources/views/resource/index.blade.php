@@ -48,7 +48,7 @@
                             <td>{{$employee->skill}}</td>
                             <td>{{date('Y-m-d', strtotime($employee->free_begin))}}</td>
                             <td>{{date('Y-m-d', strtotime($employee->free_end))}}</td>
-                            <td>{{number_format($employee->price['price_num'])}}/{{$employee->price['price_unit']}}</td>
+                            <td>{{number_format($employee->price['price_num'])}}$/{{$employee->price['price_unit']}}</td>
                             <td>
                                 <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                 <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
