@@ -14,7 +14,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('employ.index');
+        $employs = Employee::where('status', 0 )->get();
+        $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+
+        return view('employee.index', compact('employs', 'colorAvt'));
     }
 
     public function create()
@@ -65,20 +68,22 @@ class EmployeeController extends Controller
     {
         $levels = config('resources.level');
         $postions = config('resources.position');
-        $input = [
-            'experience->exp_num' => $request->exp_num,
-            'experience->exp_unit' => $request->exp_unit,
-            'price->price_num' => $request->price_num,
-            'price->price_unit' => $request->price_unit,
-            'name' => $request->name,
-            'position' => $request->position,
-            'age' => $request->age,
-            'level' => $request->level,
-            'skill' => $request->detail,
-            'certificate' => $request->certificate,
-        ];
-        $result = Employee::where('id', $id)->update($input);
         $employee = Employee::find($id);
+        $employee->name = $request->name;
+        $employee->position = $request->position;
+        $employee->age = $request->age;
+        $employee->level = $request->level;
+        $employee->skill = $request->skill;
+        $employee->certificate = $request->certificate;
+        $employee->experience = [
+            "exp_num" => $request->exp_num,
+            "exp_unit" => $request->exp_unit
+        ];
+        $employee->price = [
+            "price_num" => $request->price_num,
+            "price_unit" => $request->price_unit
+        ];
+        $result = $employee->save();
         return view('employee.detail', compact('employee', 'levels', 'postions'));
     }
 

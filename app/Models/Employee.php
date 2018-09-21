@@ -19,5 +19,9 @@ class Employee extends Model
         'price' => 'array',
     ];
 
+    public function oComapny()
+    {
+        return $this->belongsTo('app\Models\Comapny', 'company_id', 'id');
+    }
 
 }

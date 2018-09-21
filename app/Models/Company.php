@@ -12,4 +12,10 @@ class Company extends Model
 
     public $timestamps = false;
 
+    public function oEmployee()
+    {
+        return $this->hasMany('App\Models\Employee','company_id','id');
+    }
+
+
 }

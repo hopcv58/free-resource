@@ -60,9 +60,13 @@
 .hourly-rate-negotiate{
     font-size: 16px;
 }
+.position-employ{
+    text-transform: uppercase;
+}
 /*resource*/
 .resource-sidebar ul li{
     list-style: none;
+    margin-bottom: 15px;
 }
 .table-bordered{
     background-color: white!important;
@@ -70,4 +74,26 @@
 .no-padding{
     padding: 0!important;
 }
-
+.resource-sidebar ul li a{
+    color: #afafaf;
+}
+.menu-sidebar{
+    padding-left: 15px;
+}
+.unit-price {
+    font-weight: normal;
+    font-size: 13px;
+}
+.img-avatar{
+    color: white;
+    /*background-color: #0b859c;*/
+    padding: 20px;
+    border-radius: 50px;
+    height: 100px;
+    width: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    padding-top: 35px;
+}

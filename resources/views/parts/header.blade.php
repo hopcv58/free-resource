@@ -12,7 +12,7 @@
                     <li><a href="/resource">My resource</a></li>
                     <li><a href="{{route('home.findJob')}}">Find job</a></li>
                     <li><a href="{{route('home.device')}}">Device</a></li>
-                    <li><a href="{{route('home.employ')}}">Employ</a></li>
+                    <li><a href="{{route('employee.index')}}">Employ</a></li>
                 </ul>
             </div>
         </div>
