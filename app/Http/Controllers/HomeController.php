@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Responsitory\Business;
-use Illuminate\Http\Request;
-
 class HomeController extends Controller
 {
-    private $business;
-
     /**
-     * Show the application dashboard.
+     * Show the application dashboard, login, ...
      *
      * @return \Illuminate\Http\Response
      */

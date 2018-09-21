@@ -13,12 +13,15 @@
     <link rel="bookmark" href="favicon_16.ico"/>
     <!-- site css -->
     <link rel="stylesheet" href="{{asset('bootflat/css/site.min.css')}}">
+    <link rel="stylesheet" href="{{asset('bootflat/css/bootstrap.min.css')}}">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
     <!-- <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'> -->
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
     <!--[if lt IE 9]>
     <script src="{{asset('bootflat/css/js/html5shiv.js')}}"></script>
     <script src="{{asset('bootflat/js/respond.min.js')}}"></script>
+    <script src="{{asset('bootflat/js/jquery-1.10.1.min.js')}}"></script>
+    <script src="{{asset('bootflat/js/bootstrap.min.js')}}"></script>
     <![endif]-->
     <script type="text/javascript" src="{{asset('bootflat/js/site.min.js')}}"></script>
 </head>
@@ -78,12 +81,6 @@
                 <h3>Documentation</h3>
                 <h4>The complete style of the Bootflat Framework</h4>
             </div>
-            <div class="col-md-4">
-                <div class="advertisement">
-                    <script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?zoneid=1673&serve=C6AILKT&placement=bootflat" id="_carbonads_js"></script>
-
-                </div>
-            </div>
         </div>
         <div class="topic__infos">
             <div class="container">
@@ -103,23 +100,6 @@
 <!--footer-->
 <div class="site-footer">
     <div class="container">
-        <div class="download">
-            <span class="download__infos">You simply have to <b>try it</b>.</span>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-primary" href="https://github.com/bootflat/bootflat.github.io/archive/master.zip">Download Bootflat</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <a class="btn" href="documentation.html">Read the Documentation</a>&nbsp;&nbsp;&nbsp;&nbsp;
-            <!-- SmartAddon BEGIN -->
-            <script type="text/javascript">
-                (function() {
-                    var s=document.createElement('script');s.type='text/javascript';s.async = true;
-                    s.src='http://s1'+'.smartaddon.com/share_addon.js';
-                    var j =document.getElementsByTagName('script')[0];j.parentNode.insertBefore(s,j);
-                })();
-            </script>
-
-            <a href="http://www.smartaddon.com/?share" title="Share Button" onclick="return sa_tellafriend('','bookmarks')"><img alt="Share" src="http://bootflat.github.io/img/share.gif" border="0" /></a>
-            <!-- SmartAddon END -->
-        </div>
-        <hr class="dashed" />
         <div class="row">
             <div class="col-md-4">
                 <h3>Get involved</h3>

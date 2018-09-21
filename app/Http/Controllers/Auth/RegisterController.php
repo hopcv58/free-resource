@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Company;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -64,8 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'id' => Uuid::generate(),
+        return Company::create([
             'name' => $data['name'],
             'phone' => $data['phone'],
             'email' => $data['email'],
