@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ListEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['apiGetEmployeeList', 'apiUpdateEmployeeRequest']);
+    }
+
     /**
      * Show the application employee page.
      *
@@ -41,6 +48,7 @@ class EmployeeController extends Controller
             'exp_num' => $input['exp_num'],
             'exp_unit' => $input['exp_unit']
         ];
+        $input['company_id'] = Auth::user()->id;
         $input['price'] = [
             'price_num' => $input['price_num'],
             'price_unit' => $input['price_unit'],
@@ -48,9 +56,6 @@ class EmployeeController extends Controller
         if ($request->fully_free) {
             $input['free_end'] = null;
         }
-        //hard fix company_id
-        //TODO: remove hard fix
-        $input['company_id'] = 1;
         $result = Employee::create($input);
         $employs = Employee::where('status', 0 )->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
@@ -97,6 +102,53 @@ class EmployeeController extends Controller
         ];
         $result = $employee->save();
         return view('employee.detail', compact('employee', 'levels', 'postions'));
+    }
+
+    public function apiGetEmployeeList(ListEmployeeRequest $request)
+    {
+        $demands = $request->all();
+        if (!isset($demands['filters'])) {
+            $filters = [];
+        } else {
+            $filters = $demands['filters'];
+        }
+        $model = Employee::query()->where('status', '!=', 2)//status of hired
+        ->where('is_public', '=', 1);// not public
+        if ($name = array_pull($filters, 'name')) {
+            $model->where('name', 'LIKE', "%$name%");
+        }
+        if ($position = array_pull($filters, 'position')) {
+            $model->where('name', 'LIKE', "%$name%");
+        }
+        if ($expNum = array_pull($filters, 'exp_num')
+            && $expUnit = array_pull($filters, 'exp_unit') ) {
+            $model->where('experience->exp_num', $expNum);
+            $model->where('experience->exp_unit', $expUnit);
+        }
+        if ($freeBegin = array_pull($filters, 'free_begin')) {
+            $model->where('free_begin','<=', $freeBegin);
+        }
+        if ($freeEnd = array_pull($filters, 'free_end')) {
+            $model->where('free_end','>=', $freeEnd);
+        }
+        if ($certificate = array_pull($filters, 'certificate')) {
+            $model->where('certificate','LIKE', $certificate);
+        }
+        foreach ($filters as $key => $demand) {
+            $model->where($key, $demand);
+        }
+        if ($demands['limit']) {
+            $model->limit($demands['limit']);
+        }
+        return $this->response($model->get());
+    }
+
+    public function apiUpdateEmployeeRequest(UpdateEmployeeRequest $request)
+    {
+        return $this->response(['result' => Employee::where('id', $request->id)->update([
+            "status" => $request->status
+        ])
+        ]);
     }
 
     public function destroy()

@@ -13,7 +13,7 @@ class Company  extends Authenticatable
 
     public $timestamps = false;
 
-    protected $fillable = ['name', 'address', 'phone', 'email', 'username', 'password', 'most_interest'];
+    protected $fillable = ['name', 'address', 'phone', 'email', 'username', 'password', 'most_interest', 'remember_token'];
 
     public function oEmployee()
     {

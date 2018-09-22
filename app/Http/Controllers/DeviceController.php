@@ -5,13 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Device;
 use App\Repositories\DeviceRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DeviceController extends Controller
 {
     private $deviceRepository;
+
     public function __construct(DeviceRepository $deviceRepository)
     {
         $this->deviceRepository = $deviceRepository;
+        $this->middleware('auth');
     }
 
     /**
@@ -23,14 +26,15 @@ class DeviceController extends Controller
     {
         $devices = Device::where('status', 0 )->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+        $tabActive = 'device';
 
-        return view('device.index', compact('devices', 'colorAvt'));
+        return view('device.index', compact('devices', 'colorAvt', 'tabActive'));
     }
 
     public function create()
     {
         $branches = config('resources.branch');
-        $tabActive = 'resource';
+        $tabActive = 'device';
         return view('device.create', compact('branches', 'tabActive'));
     }
 
@@ -38,14 +42,12 @@ class DeviceController extends Controller
     {
         //TODO: validate input
         $input = $request->all();
+        $input['company_id'] = Auth::user()->id;
         $input['image'] = $this->deviceRepository->saveManyImg($request->file('image'), config('resources.upload_path'));
         $input['price'] = [
             'price_num' => $input['price_num'],
             'price_unit' => $input['price_unit'],
         ];
-        //hard fix company_id
-        //TODO: remove hard fix
-        $input['company_id'] = 1;
         $result = Device::create($input);
         $devices = Device::where('status', 0 )->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
@@ -60,7 +62,7 @@ class DeviceController extends Controller
         return view('device.detail', compact('branches', 'device', 'tabActive'));
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $device = Device::find($id);
         $branches = config('resources.branch');

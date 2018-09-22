@@ -23,12 +23,12 @@ return [
         'nokia' => "Nokia",
     ],
     'upload_path' => 'upload/img_product',
-    'language' => [
+    'technical_skill' => [
         'dev'=> ['PHP', 'C#', '.NET', 'JAVA'],
-        'comtor' => [],
+        'comtor' => ['Japanese', 'English', 'Korean', 'Chinese'],
         'brse' => [],
         'teamlead' => [],
-        'qa' => [],
+        'qa' => ['PQA', 'SQA'],
         'designer' => []
     ]
 ];

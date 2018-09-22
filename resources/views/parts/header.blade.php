@@ -12,7 +12,23 @@
             <div class="container">
                 <div class="row  main-menu">
                     <ul>
-                        <li><a href="{{route('login')}}" class="btn-login"><p>Login/Logout</p></a></li>
+                        @if (Auth::guest())
+                            <li><a href="#">Login</a></li>
+                            <li><a href="#">Register</a></li>
+                        @else
+                            <li>
+                                <a href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                    <p class="btn btn-warning">Logout</p>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                      style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
+                            </li>
+                        @endif
                         <li><a href="{{route('resource.index') . '?status=0'}}"><p @if(isset($tabActive) && $tabActive == 'resource') class="menu-active"@endif>My resource</p></a></li>
                         <li><a href="{{route('job.index')}}"><p @if(isset($tabActive) && $tabActive == 'search') class="menu-active"@endif>Find job</p></a></li>
                         <li><a href="{{route('device.index')}}"><p @if(isset($tabActive) && $tabActive == 'device') class="menu-active"@endif>Device</p></a></li>

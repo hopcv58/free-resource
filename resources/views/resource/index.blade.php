@@ -41,8 +41,8 @@
                             <td>{{$employee->level}}</td>
                             <td>{{$employee->experience['exp_num']}} {{$employee->experience['exp_unit']}}</td>
                             <td>{{$employee->skill}}</td>
-                            <td>{{date('Y-m-d', strtotime($employee->free_begin))}}</td>
-                            <td>{{date('Y-m-d', strtotime($employee->free_end))}}</td>
+                            <td>@if($employee->free_begin){{date('Y-m-d', strtotime($employee->free_begin))}}@else Now @endif</td>
+                            <td>@if($employee->free_end){{date('Y-m-d', strtotime($employee->free_end))}}@else Unknown @endif</td>
                             <td>{{number_format($employee->price['price_num'])}}$/{{$employee->price['price_unit']}}</td>
                             <td>
                                 @if($status == 0)

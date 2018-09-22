@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <!-- Styles -->
     <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('lib/bootstrap-3.3.7-dist/css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('bootflat/css/bootstrap.min.css') }}" rel="stylesheet">
     <link rel="shortcut icon" href="favicon_16.ico"/>
     <link rel="bookmark" href="favicon_16.ico"/>
     <link rel="stylesheet" href="{{asset('bootflat/css/site.min.css')}}">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,800,700,400italic,600italic,700italic,800italic,300italic" rel="stylesheet" type="text/css">
     {{--custom css--}}
     @yield('css')
-    <script src="{{asset('bootflat/css/js/html5shiv.js')}}"></script>
+    <script src="{{asset('bootflat/js/html5shiv.js')}}"></script>
     <script src="{{asset('bootflat/js/respond.min.js')}}"></script>
     <![endif]-->
     <script type="text/javascript" src="{{asset('bootflat/js/site.min.js')}}"></script>
