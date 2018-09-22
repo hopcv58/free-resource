@@ -2,8 +2,38 @@
     background-color: white;
 }
 .login-page .container-fluid {
-    /*background-color: grey;*/
+    background-image: url("/images/bg.jpg");
+    min-height: 100vh;
 }
-.text-center{
-
+.menu-login {
+    background-color: #42ca96;
+    height: 70px;
+    margin-bottom: 150px;
+    padding-top: 7px;
+}
+.about-us{
+    color: white;
+    font-family: Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+.about-us h1{
+    margin-bottom: 30px;
+}
+.about-us label{
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 15px;
+}
+.form-main-login {
+    min-height: 300px;
+    width: 100%;
+    background-color: white;
+    border-radius: 3px;
+}
+.form-main-login .name-logo{
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 30px;
+}
+.form-main-login input{
+    border-radius: 3px;
 }
