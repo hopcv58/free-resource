@@ -25,9 +25,7 @@ var resource = {
         $('.chat-box').css('display', 'none');
     },
     confirmHired: function(employId) {
-        // TODO: Hợp lắp action update status vào đây
-        var actionPost = window.location.origin + "/employee/" + employId;
-        $("#form-confirm-hire").attr('action', actionPost);
+        $('#id-employess-hired').attr('value', employId);
         $('#confirmHired').modal('show');
     },
     searchEmployByName: function() {
@@ -73,7 +71,7 @@ var resource = {
                         "                            <td>" + element.free_end + "</td>\n" +
                         "                            <td>"+ price + "</td>\n" +
                         "                            <td>\n" +
-                        "                                    <a href=\"#\">Approve</a>\n" +
+                        "                                    <a class=\"btn-approve\" onclick=\"resource.callTriggerApproveHire("+element.id +")\">Approve</a>\n" +
                         "                            </td>\n" +
                         "                        </tr>";
                 }
@@ -81,5 +79,9 @@ var resource = {
             }
         });
         $('#result-search').html(html);
+    },
+    callTriggerApproveHire: function(idEmployee) {
+        $('#id-employess-hired').attr('value', idEmployee);
+        $('#confirmHired').modal('show');
     }
 };

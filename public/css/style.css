@@ -178,3 +178,6 @@
     font-style: italic;
 }
 /*end chat*/
+.btn-approve{
+    cursor: pointer;
+}

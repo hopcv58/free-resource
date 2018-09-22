@@ -15,6 +15,9 @@
             </select>
         </div>
     </div>
+    @if($errors->any())
+        <div class="alert alert-danger" role="alert" style="background-color: #f2dede">{{$errors->first()}}</div>
+    @endif
     {{--start item--}}
     @if(count($employs) > 0)
         @foreach($employs as $item)
@@ -89,13 +92,14 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"></h4>
                 </div>
-                <form method='POST' id="form-confirm-hire">
-                    <input type="hidden" name="_method" value="PUT">
+                <form method='POST' action="{{route('home.employ.updateStatus')}}" id="form-confirm-hire">
+                    <input type="hidden" name="_method" value="POST">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label"></label>
                         <div class="col-sm-10">
                             <input type="hidden" name="status" value="1"class="form-control">
+                            <input type="hidden" name="id" id="id-employess-hired" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
@@ -118,10 +122,5 @@
         @if($employs)
         resource.extend({!! $employs !!});
         @endif
-        $( "#form-confirm-hire" ).submit(function( event ) {
-            $('#confirmHired').modal('hide');
-            event.preventDefault();
-            location.reload();
-        });
     </script>
 @stop

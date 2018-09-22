@@ -18,8 +18,8 @@
                 <li><a href="{{route('resource.index') . '?status=2'}}" @if($status == 2) class="link-selected" @endif>Employee
                         Hired</a></li>
                 <li><a href="">Device Avaiable</a></li>
-                <li><a href="/resource">Device In Negotiate</a></li>
-                <li><a href="/resource">Device Hired</a></li>
+                <li><a href="">Device In Negotiate</a></li>
+                <li><a href="">Device Hired</a></li>
             </ul>
         </div>
     </div>

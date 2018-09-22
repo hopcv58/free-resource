@@ -49,8 +49,7 @@
                                 <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                 <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
                                 @elseif($status == 1)
-                                    {{--TODO: Hợp add cả route api update status ở đây, api này update status= 2 => đã thuê--}}
-                                    <a href="#">Approve</a>
+                                    <a class="btn-approve" onclick="resource.callTriggerApproveHire({{$employee->id}})">Approve</a>
                                 @endif
                             </td>
                         </tr>
@@ -62,6 +61,38 @@
         @else
             <p>No data</p>
         @endif
+            {{--modal confirm hired--}}
+            <div id="confirmHired" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title"></h4>
+                        </div>
+                        <form method='POST' action="{{route('home.employ.updateStatus')}}" id="form-confirm-hire">
+                            <input type="hidden" name="_method" value="POST">
+                            {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <input type="hidden" name="status" value="2"class="form-control">
+                                    <input type="hidden" name="id" id="id-employess-hired" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <p for="inputEmail3" class="col-sm-12" style="padding:  0 20px 20px 20px">Approve for negotiating with this employee?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-success">Yes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+            {{--end modal confirm hired--}}
 
     </div>
 

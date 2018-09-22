@@ -23,3 +23,4 @@ Route::resource('employee', 'EmployeeController');
 Route::resource('resource', 'ResourceController');
 Route::resource('device', 'DeviceController');
 Route::resource('job', 'JobController');
+Route::post('/myResource/update', 'ResourceController@updateStatus')->name('home.employ.updateStatus');
