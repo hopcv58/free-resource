@@ -48,7 +48,7 @@
                                 @if(($status == 0 || $status == 1) && Request::route()->getName() == 'resource.index')
                                 <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                 <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                @elseif($status == 2 || Request::route()->getName() == 'resource.job.negotiating')
+                                @elseif(Request::route()->getName() == 'resource.job.negotiating')
                                     <a class="btn-approve" onclick="resource.callTriggerApproveHire({{$employee->id}})">Approve</a>
                                 @endif
                             </td>

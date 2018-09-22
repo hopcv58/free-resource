@@ -5,7 +5,7 @@
 @section('content')
     <div class="row" style="margin-bottom: 20px">
         <div class="col-md-3 no-padding">
-            <input type="text" placeholder="Search name" id="search-name" name="search-name" class="form-control" onkeyup="resource.searchEmployByName()">
+            <input type="text" placeholder="Search title" id="search-name" name="search-name" class="form-control" onkeyup="resource.searchEmployByTitle()">
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
