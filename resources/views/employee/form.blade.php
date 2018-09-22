@@ -153,6 +153,10 @@
 <div class="form-group">
     <label for="inputEmail3" class="col-sm-2 control-label"></label>
     <div class="col-sm-10">
+        @if($status == 0)
         <input type="submit" class="btn btn-info" value="Save">
+        @else
+            <input type="button" class="btn btn-primary" value="Back">
+        @endif
     </div>
 </div>

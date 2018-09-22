@@ -5,12 +5,7 @@
 @section('content')
     <div class="row" style="margin-bottom: 20px">
         <div class="col-md-3 no-padding">
-            <select class="form-control">
-                <option value="1">Ha noi</option>
-                <option value="2">Ho Chi Minh</option>
-                <option value="3">Da Nang</option>
-                <option value="4">Nam Dinh</option>
-            </select>
+            <input type="text" placeholder="Search name" id="search-name" name="search-name" class="form-control" onkeyup="resource.searchEmployByName()">
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
@@ -37,7 +32,7 @@
 
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="result-search">
                     @foreach($employees as $key => $employee)
                         <tr>
                             <th scope="row">{{$key + 1}}</th>
@@ -71,3 +66,12 @@
     </div>
 
 @endsection
+
+@section('script')
+    <script src="{{ asset('js/my_jquery.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        @if($employees)
+        resource.extend({!! $employees !!});
+        @endif
+    </script>
+@stop
