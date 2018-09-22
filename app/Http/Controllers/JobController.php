@@ -20,7 +20,7 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::where('status', 0 )
+        $jobs = Job::where('status', 0)
             ->where('company_id', '!=', Auth::user()->id)
             ->orderBy('id', 'DESC')->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
@@ -29,15 +29,16 @@ class JobController extends Controller
         $technicals = config('resources.technical_skill');
         $postions = config('resources.position');
         $levels = config('resources.level');
-        return view('job.index', compact('jobs', 'colorAvt' , 'tabActive', 'levels', 'postions', 'technicals'));
+        return view('job.index', compact('jobs', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals'));
     }
 
     public function create()
     {
         $levels = config('resources.level');
         $postions = config('resources.position');
+        $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
-        return view('job.create', compact('levels', 'postions', 'tabActive'));
+        return view('job.create', compact('levels', 'postions', 'tabActive', 'technicals'));
     }
 
     public function store(Request $request)
@@ -55,13 +56,13 @@ class JobController extends Controller
         //hard fix company_id
         $input['company_id'] = Auth::user()->id;
         $result = Job::create($input);
-        $jobs = Job::where('status', 0 )->get();
+        $jobs = Job::where('status', 0)->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'job';
         $technicals = config('resources.technical_skill');
         $postions = config('resources.position');
         $levels = config('resources.level');
-        return view('job.index', compact('jobs', 'colorAvt' , 'tabActive', 'levels', 'postions', 'technicals'));
+        return view('job.index', compact('jobs', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals'));
     }
 
     public function show($id)
@@ -77,8 +78,9 @@ class JobController extends Controller
         $job = Job::find($id);
         $levels = config('resources.level');
         $postions = config('resources.position');
+        $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
-        return view('job.edit', compact('job', 'levels', 'postions', 'tabActive'));
+        return view('job.edit', compact('job', 'levels', 'postions', 'tabActive', 'technicals'));
     }
 
     public function update(Request $request, $id)
@@ -88,8 +90,8 @@ class JobController extends Controller
         $job = Job::find($id);
         $job->position = $request->position;
         $job->level = $request->level;
+        $job->title = $request->title;
         $job->skill = $request->skill;
-        $job->detail = $request->detail;
         $job->certificate = $request->certificate;
         $job->time_start = $request->time_start;
         $job->experience = [

@@ -10,7 +10,8 @@
         <div class="col-md-3"></div>
         <div class="col-md-3"></div>
         <div class="col-md-3 no-padding" style="text-align: right">
-            <a href="{{route('employee.create')}}"><button type="button" class="btn btn-warning">Add</button></a>
+            <a href="{{route('employee.create')}}"><button type="button" class="btn btn-warning">Add Employee</button></a>
+            <a href="{{route('job.create')}}"><button type="button" class="btn btn-warning">Add Job</button></a>
         </div>
     </div>
     <div class="row">
@@ -24,7 +25,6 @@
                         <th>Position</th>
                         <th>Level</th>
                         <th>Exp</th>
-                        <th style="min-width: 100px">Skill</th>
                         <th style="min-width: 100px">Job Start</th>
                         <th style="min-width: 100px">Job End</th>
                         <th>Price</th>
@@ -33,23 +33,23 @@
                     </tr>
                     </thead>
                     <tbody id="result-search">
-                    @foreach($jobs as $key => $employee)
+                    @foreach($jobs as $key => $job)
                         <tr>
                             <th scope="row">{{$key + 1}}</th>
-                            <td>{{$employee->title}}</td>
-                            <td>{{$employee->position}}</td>
-                            <td>{{$employee->level}}</td>
-                            <td>{{$employee->experience['exp_num']}} {{$employee->experience['exp_unit']}}</td>
-                            <td>{{$employee->skill}}</td>
-                            <td>@if($employee->time_start){{date('Y-m-d', strtotime($employee->free_begin))}}@else Unknown @endif</td>
-                            <td>@if($employee->time_end){{date('Y-m-d', strtotime($employee->free_end))}}@else Unknown @endif</td>
-                            <td>{{number_format($employee->price['price_num'])}}$/{{$employee->price['price_unit']}}</td>
+                            <td>{{$job->title}}</td>
+                            <td>{{$job->position}}</td>
+                            <td>{{$job->level}}</td>
+                            <td>{{$job->experience['exp_num']}} {{$job->experience['exp_unit']}}</td>
+                            <td>@if($job->time_start){{date('Y-m-d', strtotime($job->time_start))}}@else Unknown @endif</td>
+                            <td>@if($job->time_end){{date('Y-m-d', strtotime($job->time_end))}}@else Unknown @endif</td>
+                            <td>{{number_format($job->price['price_num'])}}$/{{$job->price['price_unit']}}</td>
                             <td>
                                 @if(Request::route()->getName() == 'resource.job')
-                                    <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                    <a href="{{route('job.edit', $job->id)}}"><span
+                                                class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                     <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                @elseif(Request::route()->getName() == 'resource.job.negotiating')
-                                    <a class="btn-approve" onclick="resource.callTriggerApproveHire({{$employee->id}})">Approve</a>
+                                    <a href="#" onclick="resource.rendHintModal({{$job->id}})"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>
+                                @else
                                 @endif
                             </td>
                         </tr>
@@ -61,39 +61,26 @@
         @else
             <p>No data</p>
         @endif
-            {{--modal confirm hired--}}
-            <div id="confirmHired" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title"></h4>
-                        </div>
-                        <form method='POST' action="{{route('home.employ.updateStatus')}}" id="form-confirm-hire">
-                            <input type="hidden" name="_method" value="POST">
-                            {{csrf_field()}}
-                            <div class="form-group">
-                                <label class="col-sm-2 control-label"></label>
-                                <div class="col-sm-10">
-                                    <input type="hidden" name="status" value="3" class="form-control">
-                                    <input type="hidden" name="id" id="id-employess-hired" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <p class="col-sm-12" style="padding:  0 20px 20px 20px">Approve for negotiating with this employee?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-success">Yes</button>
-                            </div>
-                        </form>
-                    </div>
+    </div>
+    {{--modal confirm hired--}}
+    <div id="hint-modal" class="modal fade" role="dialog">
+        <div class="modal-dialog" style="top:200px;">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div class="modal-body" id="hint-body">
 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
             </div>
-            {{--end modal confirm hired--}}
+        </div>
     </div>
+    {{--end modal confirm hired--}}
 @endsection
 
 @section('script')

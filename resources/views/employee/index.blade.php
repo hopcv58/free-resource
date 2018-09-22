@@ -41,7 +41,7 @@
                             </p>
                             <div class="row collapse" id="more-detail-employee-{{$item->id}}">
                                 <div class="col-md-6">
-                                    <label>Company: </label> <label class="skill-employ">{{$item->company_name}}</label><br/>
+                                    <label>Age: </label> <label class="skill-employ">{{$item->age}}</label><br/>
                                     <label>Certificate: </label> <label class="skill-employ">{{$item->certificate}}</label><br/>
                                 </div>
                                 <div class="col-md-6">
@@ -105,7 +105,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <p class="col-sm-12" style="padding:  0 20px 20px 20px">Do you want to negotiate with this developer?</p>
+                        <p class="col-sm-12" style="padding:  0 20px 20px 20px">Do you want to negotiate with this employee?</p>
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -4,12 +4,23 @@
 </div>
 
 <div class="form-group">
+    <label class="col-sm-2 control-label">Title</label>
+    <div class="col-sm-10">
+        <input type="text" name="title" class="form-control"
+               @if(isset($job)) value="{{$job->title}}" @endif>
+    </div>
+</div>
+<div class="form-group">
     <label class="col-sm-2 control-label">Position</label>
     <div class="col-sm-10">
         <select name="position" id="position" class="form-control">
             @foreach($postions as $key => $postion)
-                <option value="{{$key}}"
-                        @if(isset($job) && $job->position == $key) selected @endif >{{$postion}}</option>
+                <optgroup label="{{$postion}}">
+                    @foreach($technicals[$key] as $technical)
+                        <option value="{{$technical}}"
+                                @if(isset($job) && $job->position == $technical) selected @endif >{{$technical}}</option>
+                    @endforeach
+                </optgroup>
             @endforeach
         </select>
     </div>
@@ -66,20 +77,34 @@
     </div>
 </div>
 <div class="form-group">
-    <label class="col-sm-2 control-label">Start at</label>
-    <div class="col-sm-10">
-        <div class="col-md-5 no-padding">
-            <input type="date" name="time_start" class="form-control"
-                   @if(isset($job) && $job->time_start) value="{{$job->time_start}}" @endif>
+    <label class="col-sm-2 control-label">Start from</label>
+    @if(isset($job))
+        <div class="col-md-10">
+            <div class="col-md-5 no-padding">
+                <input type="date" name="time_start" class="form-control"
+                       @if($job->time_start) value="{{$job->time_start}}" @endif>
+            </div>
+            <label class="col-md-2 control-label">To</label>
+            <div class="col-md-5 no-padding">
+                <input type="date" name="time_end" class="form-control"
+                       @if($job->time_end) value="{{$job->time_end}}" @endif>
+            </div>
         </div>
-    </div>
-</div>
-<div class="form-group">
-    <label class="col-sm-2 control-label">Detail</label>
-    <div class="col-sm-10">
-        <input type="text" name="detail" class="form-control"
-               @if(isset($job)) value="{{$job->detail}}" @endif>
-    </div>
+    @else
+        <div class="col-md-10">
+            <div class="col-md-4 no-padding">
+                <input type="date" name="time_end" class="form-control">
+            </div>
+            <label class="col-sm-1 control-label">To</label>
+            <div class="col-md-4 no-padding">
+                <input type="date" name="time_end" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <label class="control-label">Fully Free</label>
+                <input type="checkbox" name="fully_free">
+            </div>
+        </div>
+    @endif
 </div>
 <div class="form-group">
     <label class="col-sm-2 control-label">Quantity</label>

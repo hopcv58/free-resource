@@ -25,7 +25,7 @@ var resource = {
     confirmHired: function (employId) {
         $('#id-employess-hired').attr('value', employId);
         $('#confirmHired').modal('show');
-        $('#confirm-hired-btn').attr('onclick', 'resource.confirmHireSubmit(' + employId + ')');
+        $('#confirm-hired-btn').attr('onclick', 'resource.confirmHireSubmit()');
     },
     searchEmployByName: function () {
         var keySearch = $('#search-name').val().toLowerCase();
@@ -58,8 +58,7 @@ var resource = {
                         "                                <a><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a>\n" +
                         "                            </td>\n" +
                         "                        </tr>";
-                }
-                if (element.status == 2)
+                }else if (element.status == 2)
                 {
                     number++;
                     html += "<tr>\n" +
@@ -120,16 +119,16 @@ var resource = {
                         "                            <td>" + element.position + "</td>\n" +
                         "                            <td>" + element.level + "</td>\n" +
                         "                            <td> " + exp + "</td>\n" +
-                        "                            <td>" + element.skill + "</td>\n" +
                         "                            <td>" + element.free_begin + "</td>\n" +
                         "                            <td>" + element.free_end + "</td>\n" +
                         "                            <td>" + price + "</td>\n" +
                         "                            <td>\n" +
                         "                                <a href=\"" + url + "\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>\n" +
                         "                                <a><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a>\n" +
+                        '                                <a href="#" onclick="resource.rendHintModal(' + element.id + ')"><span class="glyphicon glyphicon-expand" aria-hidden="true"></span></a>'
                         "                            </td>\n" +
                         "                        </tr>";
-                }else if (element.status == 1) {
+                } else if (element.status == 1) {
                     number++;
                     html += "<tr>\n" +
                         "                            <th scope=\"row\">" + number + "</th>\n" +
@@ -137,7 +136,6 @@ var resource = {
                         "                            <td>" + element.position + "</td>\n" +
                         "                            <td>" + element.level + "</td>\n" +
                         "                            <td> " + exp + "</td>\n" +
-                        "                            <td>" + element.skill + "</td>\n" +
                         "                            <td>" + element.free_begin + "</td>\n" +
                         "                            <td>" + element.free_end + "</td>\n" +
                         "                            <td>" + price + "</td>\n" +
@@ -154,7 +152,6 @@ var resource = {
                         "                            <td>" + element.position + "</td>\n" +
                         "                            <td>" + element.level + "</td>\n" +
                         "                            <td> " + exp + "</td>\n" +
-                        "                            <td>" + element.skill + "</td>\n" +
                         "                            <td>" + element.free_begin + "</td>\n" +
                         "                            <td>" + element.free_end + "</td>\n" +
                         "                            <td>" + price + "</td>\n" +
@@ -166,7 +163,16 @@ var resource = {
         });
         $('#result-search').html(html);
     },
-    confirmHireSubmit: function (employId) {
+    rendHintModal: function (jobId) {
+        $.ajax({
+            method: 'GET',
+            url: '/job/' + jobId + '/hint',
+        }).done(function (res) {
+            $("#hint-body").html(res);
+        });
+        $("#hint-modal").modal('show');
+    },
+    confirmHireSubmit: function () {
         $.ajax({
             method: 'POST',
             url: $("#form-confirm-hire").attr('action'),
@@ -179,6 +185,24 @@ var resource = {
                 location.reload()
             }
         });
+    },
+    confirmNegotiate: function(employee_id, company_id) {
+        var conf = confirm("Are you sure to start negotiating with this employee?");
+        if (conf) {
+            $.ajax({
+                method: 'POST',
+                url: '/api/employee/update',
+                data: {
+                    id: employee_id,
+                    company_id: company_id,
+                    status: 2
+                }
+            }).done(function (res) {
+                if (res.meta.status = 200) {
+                    $("#btn_negotiate" + employee_id).attr('disabled', 'disabled').attr('onclick','');
+                }
+            });
+        }
     },
     callTriggerApproveHire: function(idEmployee) {
         $('#id-employess-hired').attr('value', idEmployee);

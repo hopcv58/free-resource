@@ -24,8 +24,9 @@
             </ul>
             <p class="menu-sidebar">DEMAND JOB MANAGE</p>
             <ul>
-                <li><a href="{{route('resource.job')}}" @if(Request::route()->getName() == 'resource.job') class="link-selected" @endif>Job Created</a></li>
+                <li><a href="{{route('resource.job')}}" @if(Request::route()->getName() == 'resource.job') class="link-selected" @endif>My Job</a></li>
                 <li><a href="{{route('resource.job.negotiating')}}" @if(Request::route()->getName() == 'resource.job.negotiating') class="link-selected" @endif>Negotiating</a></li>
+                <li><a href="{{route('resource.job.hired')}}" @if(Request::route()->getName() == 'resource.job.hired') class="link-selected" @endif>Hiring Employee</a></li>
             </ul>
             <p class="menu-sidebar">DEVICE MANAGE</p>
             <ul>

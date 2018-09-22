@@ -25,4 +25,6 @@ Route::resource('device', 'DeviceController');
 Route::resource('job', 'JobController');
 Route::post('/myResource/update', 'ResourceController@updateStatus')->name('home.employ.updateStatus');
 Route::get('/resource/job', 'ResourceController@jobStatus')->name('resource.job');
-Route::get('/resource/job/hiring', 'ResourceController@jobHiring')->name('resource.job.negotiating');
+Route::get('/resource/job/negotiating', 'ResourceController@jobNegotiating')->name('resource.job.negotiating');
+Route::get('/resource/job/hired', 'ResourceController@jobHired')->name('resource.job.hired');
+Route::get('/job/{id}/hint', 'ResourceController@rendHintModal')->name('job.hint');
