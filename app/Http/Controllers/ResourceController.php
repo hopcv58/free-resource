@@ -21,7 +21,7 @@ class ResourceController extends Controller
         $status = $request->status;
         $employees = $this->employeeRepo->getList(['status' => $status]);
 
-        return view('resource.index', compact('tabActive', 'employees'));
+        return view('resource.index', compact('tabActive', 'employees', 'status'));
     }
 
     public function create()

@@ -28,6 +28,23 @@
                             <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time avaiable:</lable> <label class="time-avaiable">{{$item->free_begin}} ~ {{$item->free_end}}</label></p>
                             <label>Experience: </label> <label class="exp-employ">{{$item->experience['exp_num']}} {{$item->experience['exp_unit']}}</label> <br/>
                             <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label>
+                            <p >
+                                <a onclick="resource.showChatBox({{$item->company_id}})" class="link-contact">Chat</a> |
+                                <a class="link-contact">Skype</a> |
+                                <span id="box-link-expan-detail-{{$item->id}}">
+                                    <a class="link-expan-detail" id="link-expan-detail-{{$item->id}}" data-toggle="collapse" data-target="#more-detail-employee-{{$item->id}}" onclick="resource.showDetail({{$item->id}})">View more detail...</a>
+                                </span>
+
+                            </p>
+                            <div class="row collapse" id="more-detail-employee-{{$item->id}}">
+                                <div class="col-md-6">
+                                    <label>Company: </label> <label class="skill-employ">{{$item->company_name}}</label><br/>
+                                    <label>Certificate: </label> <label class="skill-employ">{{$item->certificate}}</label><br/>
+                                </div>
+                                <div class="col-md-6">
+                                    <label>Detail: </label> <label class="skill-employ">{{$item->detail}}</label><br/>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-2" style="text-align: center">
 
@@ -37,7 +54,7 @@
                                 <lable class="unit-price">/{{$item->price['price_unit']}}</lable>
                             @else <br/><label class="hourly-rate-negotiate">Negotiate</label>
                             @endif
-                            <button type="button" class="btn btn-warning btn-contact-employ">VIEW DETAIL</button>
+                            <button type="button" class="btn btn-warning btn-contact-employ" onclick="resource.confirmHired({{$item->id}})">HIRE NOW</button>
                         </div>
                     </div>
                 </div>
@@ -47,5 +64,66 @@
         <p>No data</p>
     @endif
     {{--end item--}}
+    {{--start chat box--}}
+    <div class="row chat-box">
+        <p class="title-chat">Contact with representative <label class="close-chat" onclick="resource.hideChatBox()">Close</label></p>
+        <div class="col-md-12" style="height: 250px">
+            <label>Co-well ASIA</label>
+            <p class="content-chat-defaut">
+                Hi you, Can I help you? Please type your question
+            </p>
+        </div>
 
+        <hr>
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Input text here...">
+            </div>
+        </div>
+    </div>
+    {{--end chat box--}}
+    {{--modal confirm hired--}}
+    <div id="confirmHired" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <form method='POST' id="form-confirm-hire">
+                    <input type="hidden" name="_method" value="PUT">
+                    {{csrf_field()}}
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <input type="hidden" name="status" value="1"class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <p for="inputEmail3" class="col-sm-12" style="padding:  0 20px 20px 20px">Do you want to negotiate with this developer?</p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-success">Yes</button>
+                </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    {{--end modal confirm hired--}}
 @endsection
+@section('script')
+    <script src="{{ asset('js/my_jquery.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        @if($employs)
+        resource.extend({!! $employs !!});
+        @endif
+        $( "#form-confirm-hire" ).submit(function( event ) {
+            $('#confirmHired').modal('hide');
+            event.preventDefault();
+            location.reload();
+        });
+    </script>
+@stop

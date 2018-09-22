@@ -4,6 +4,7 @@
 .main-wrap{
     background-color: #f9fafb;
     padding: 30px 0;
+    min-height: 100vh;
 }
 .lever-employ, .resource-sidebar, .form-add-employee{
     background-color: white;
@@ -132,4 +133,48 @@
     font-weight: normal!important;
     color: #bdbebf!important;
 }
-
+.link-expan-detail {
+    cursor: pointer;
+    font-size: 13px;
+}
+.link-selected{
+    color: black!important;
+}
+.link-contact{
+    font-size: 13px;
+    cursor: pointer;
+}
+/*chat box*/
+.chat-box{
+    /*height: 350px;*/
+    width: 300px;
+    /*background-color: grey;*/
+    position: fixed;
+    right: 50px;
+    bottom: 0;
+    border: 1px solid #ea7312;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: white;
+    display: none;
+}
+.title-chat{
+    text-align: center;
+    color: white;
+    background-color: #ea7312;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    padding: 7px;
+}
+.close-chat {
+    cursor: pointer;
+    float: right;
+}
+.content-chat-defaut {
+    background-color: #ececec;
+    border-radius: 3px;
+    color: black;
+    padding:15px;
+    font-style: italic;
+}
+/*end chat*/

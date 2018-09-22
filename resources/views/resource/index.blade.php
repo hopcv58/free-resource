@@ -50,8 +50,13 @@
                             <td>{{date('Y-m-d', strtotime($employee->free_end))}}</td>
                             <td>{{number_format($employee->price['price_num'])}}$/{{$employee->price['price_unit']}}</td>
                             <td>
+                                @if($status == 0)
                                 <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                 <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                @elseif($status == 1)
+                                    {{--Hợp add cả route api update status ở đây, api này update status= 2 => đã thuê--}}
+                                    <a href="#">Approve</a>
+                                @endif
                             </td>
                         </tr>
                     @endforeach
