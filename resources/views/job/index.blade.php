@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <h4>Avaiable Employs ({{count($devices)}})</h4>
+            <h4>Avaiable Employs ({{count($jobs)}})</h4>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -16,19 +16,12 @@
         </div>
     </div>
     {{--start item--}}
-    @if(count($devices) > 0)
-        @foreach($devices as $item)
+    @if(count($jobs) > 0)
+        @foreach($jobs as $item)
             <div class="row employ-item">
-                @if($item->image)
-                    <div class="col-md-2 thumbnail">
-                        <img src="{{asset('upload/img_product/' . $item->image[0])}}">
-                    </div>
-                @else
-                    <div class="col-md-2 thumbnail">
-                        <p class="img-avatar"
-                           style="background-color: {{$colorAvt[array_rand($colorAvt)]}}">{{substr($item->position,0,3)}}</p>
-                    </div>
-                @endif
+                <div class="col-md-2 thumbnail">
+                    <p class="img-avatar" style="background-color: {{$colorAvt[array_rand($colorAvt)]}}">{{substr($item->position,0,3)}}</p>
+                </div>
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-10">

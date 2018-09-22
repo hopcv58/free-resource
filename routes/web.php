@@ -15,9 +15,10 @@ Route::get('/base', function () {
     return view('welcome');
 });
 
-Route::get('/', 'EmployeeController@index')->name('home.employ');
-Route::get('/device', 'DeviceController@index')->name('home.device');
+Route::get('/', 'EmployeeController@index');
 Route::get('/findJob', 'HomeController@findJob')->name('home.findJob');
 Route::get('/myResource', 'HomeController@myResource')->name('home.myResource');
 Route::resource('employee', 'EmployeeController');
 Route::resource('resource', 'ResourceController');
+Route::resource('device', 'DeviceController');
+Route::resource('job', 'JobController');

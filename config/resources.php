@@ -14,6 +14,15 @@ return [
         'designer' => 'Designer',
         'comtor' => 'Comtor'
     ],
+    'branch' => [
+        'samsung' => "SAMSUNG",
+        'ios' => "iOS",
+        'lg' => "LG",
+        'blackberry' => "BlackBerry",
+        'xiaomi' => "Xiaomi",
+        'nokia' => "Nokia",
+    ],
+    'upload_path' => 'upload/img_product',
     'language' => [
         'dev'=> ['PHP', 'C#', '.NET', 'JAVA'],
         'comtor' => [],
