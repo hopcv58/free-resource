@@ -61,7 +61,7 @@
             Required <input type="radio" name="certificate" value="1" @if(isset($job) && $job->certificate) checked @endif>
         </div>
         <div class="col-md-3">
-            Not required <input type="radio" name="certificate" value="0" @if((isset($job) && !$job->free_end) || !isset($job)) checked @endif>
+            Not required <input type="radio" name="certificate" value="0" @if((isset($job) && !$job->certificate) || !isset($job)) checked @endif>
         </div>
     </div>
 </div>

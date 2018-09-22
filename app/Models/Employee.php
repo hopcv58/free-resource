@@ -13,7 +13,7 @@ class Employee extends Model
     public $timestamps = false;
 
     protected $fillable = ['name', 'position', 'age', 'level', 'experience', 'skill', 'free_end', 'detail',
-        'certificate', 'price', 'company_id', 'status', 'negotiating_id', 'rented_id'];
+        'certificate', 'price', 'company_id', 'status', 'negotiating_id', 'rented_id', 'is_public'];
     protected $casts = [
         'experience' => 'array',
         'price' => 'array',

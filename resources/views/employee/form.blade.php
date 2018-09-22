@@ -66,23 +66,47 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Free until</label>
-    <div class="col-sm-10">
-        @if(isset($employee))
-            <div class="col-md-5 no-padding">
+    <label for="inputEmail3" class="col-sm-2 control-label">Free from</label>
+
+    @if(isset($employee))
+        <div class="col-md-10">
+            <div class="col-md-4 no-padding">
+                <input type="date" name="free_begin" class="form-control"
+                       @if($employee->free_begin) value="{{$employee->free_begin}}" @endif>
+            </div>
+            <label for="inputEmail3" class="col-md-1 control-label">To</label>
+            <div class="col-md-4 no-padding">
                 <input type="date" name="free_end" class="form-control"
                        @if($employee->free_end) value="{{$employee->free_end}}" @endif>
             </div>
-            <div class="col-md-5">
-                Fully Free <input type="checkbox" name="fully_free" @if(!$employee->free_end) checked @endif>
+            <div class="col-md-3">
+                <label for="inputEmail3" class="control-label">Fully Free</label>
+                <input type="checkbox" name="fully_free"
+                                  @if(!$employee->free_begin && !$employee->free_end) checked @endif>
             </div>
-        @else
-            <div class="col-md-5 no-padding">
+        </div>
+    @else
+        <div class="col-md-10">
+            <div class="col-md-4 no-padding">
                 <input type="date" name="free_end" class="form-control">
             </div>
-            <div class="col-md-5">
-                Fully Free <input type="checkbox" name="fully_free">
+            <label for="inputEmail3" class="col-sm-1 control-label">To</label>
+            <div class="col-md-4 no-padding">
+                <input type="date" name="free_end" class="form-control">
             </div>
+            <div class="col-md-3">
+                <label for="inputEmail3" class="control-label">Fully Free</label>
+                <input type="checkbox" name="fully_free">
+            </div>
+        </div>
+    @endif
+
+</div>
+<div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Free until</label>
+    <div class="col-sm-10">
+        @if(isset($employee))
+        @else
         @endif
     </div>
 </div>

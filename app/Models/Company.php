@@ -3,14 +3,17 @@
 namespace App\Models;
 
 use DB;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Company extends Model
+class Company  extends Authenticatable
 {
     use EloquentTrait;
 
     protected $table = 'company';
 
     public $timestamps = false;
+
+    protected $fillable = ['name', 'address', 'phone', 'email', 'username', 'password', 'most_interest'];
 
     public function oEmployee()
     {

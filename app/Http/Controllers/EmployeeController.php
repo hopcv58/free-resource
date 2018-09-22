@@ -14,7 +14,10 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employs = Employee::where('status', 0 )->get();
+        $employs = Employee::where('status', 0)
+            //TODO: remove hard fix
+            ->where('company_id', '!=', 1)
+            ->where('is_public', '=', 1)->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'employ';
 
@@ -41,6 +44,9 @@ class EmployeeController extends Controller
             'price_num' => $input['price_num'],
             'price_unit' => $input['price_unit'],
         ];
+        if ($request->fully_free) {
+            $input['free_end'] = null;
+        }
         //hard fix company_id
         //TODO: remove hard fix
         $input['company_id'] = 1;

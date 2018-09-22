@@ -35,15 +35,15 @@
             <div class="panel-body">
                 <form action="{{route('login')}}" method="post" class="form-horizontal">
                     {{csrf_field()}}
-                    <div class="form-group has-feedback {{$errors->has('email') ? ' has-error' : ''}}">
-                        <label for="email" class="control-label col-md-4">E-Mail Address</label>
+                    <div class="form-group has-feedback {{$errors->has('username') ? ' has-error' : ''}}">
+                        <label for="username" class="control-label col-md-4">Username</label>
                         <div class="col-md-6">
-                            <input type="email" class="form-control" placeholder="Email" name="email"
-                                   value="{{old('email')}}">
+                            <input type="username" class="form-control" placeholder="Email" name="username"
+                                   value="{{old('username')}}">
                             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                            @if($errors->has('email'))
+                            @if($errors->has('username'))
                                 <span class="help-block">
-                                    <strong>{{$errors->first('email')}}</strong>
+                                    <strong>{{$errors->first('username')}}</strong>
                                 </span>
                             @endif
                         </div>
