@@ -25,7 +25,7 @@ var resource = {
         $('.chat-box').css('display', 'none');
     },
     confirmHired: function(employId) {
-        // Hợp lắp action update status vào đây
+        // TODO: Hợp lắp action update status vào đây
         var actionPost = window.location.origin + "/employee/" + employId;
         $("#form-confirm-hire").attr('action', actionPost);
         $('#confirmHired').modal('show');

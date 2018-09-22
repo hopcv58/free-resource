@@ -47,14 +47,12 @@
                             </div>
                         </div>
                         <div class="col-md-2" style="text-align: center">
-
-                            Hourly Rate
                             @if($item->price != '')
                                 <label class="hourly-rate">{{number_format($item->price['price_num'])}}$</label> <br/>
                                 <lable class="unit-price">/{{$item->price['price_unit']}}</lable>
                             @else <br/><label class="hourly-rate-negotiate">Negotiate</label>
                             @endif
-                            <button type="button" class="btn btn-warning btn-contact-employ" onclick="resource.confirmHired({{$item->id}})">HIRE NOW</button>
+                            <button type="button" class="btn btn-warning btn-contact-employ" onclick="resource.confirmHired({{$item->id}})">NEGOTIATE</button>
                         </div>
                     </div>
                 </div>
