@@ -38,9 +38,10 @@ class DeviceController extends Controller
 
     public function create()
     {
+        $postions = config('resources.position');
         $branches = config('resources.branch');
-        $tabActive = 'device';
-        return view('device.create', compact('branches', 'tabActive'));
+        $tabActive = 'resource';
+        return view('device.create', compact('branches', 'tabActive','postions'));
     }
 
     public function store(Request $request)

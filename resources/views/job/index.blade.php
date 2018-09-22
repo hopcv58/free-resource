@@ -30,8 +30,6 @@
                             <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label>
                         </div>
                         <div class="col-md-2" style="text-align: center">
-
-                            Hourly Rate
                             @if($item->price != '')
                                 <label class="hourly-rate">{{number_format($item->price['price_num'])}}$</label> <br/>
                                 <lable class="unit-price">/{{$item->price['price_unit']}}</lable>

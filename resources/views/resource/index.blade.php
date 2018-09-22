@@ -8,9 +8,9 @@
             <input type="text" placeholder="Search name" id="search-name" name="search-name" class="form-control" onkeyup="resource.searchEmployByName()">
         </div>
         <div class="col-md-3"></div>
-        <div class="col-md-3"></div>
-        <div class="col-md-3 no-padding" style="text-align: right">
+        <div class="col-md-6 no-padding" style="text-align: right">
             <a href="{{route('employee.create')}}"><button type="button" class="btn btn-warning">Add Employee</button></a>
+            <a href="{{route('device.create')}}"><button type="button" class="btn btn-warning">Add Device</button></a>
             <a href="{{route('job.create')}}"><button type="button" class="btn btn-warning">Add Job</button></a>
         </div>
     </div>

@@ -1,10 +1,10 @@
 <div id="header" class="docs-header">
     <div class="topic">
         <div class="container">
-            <div class="col-md-8">
-                <img src="{{asset('images/icon1.png')}}">
+            <div class="col-md-4" style="width: 400px;min-height: 120px;">
+                <img src="{{asset('images/icon1.png')}}" style="max-width: 100%;height: auto;">
             </div>
-            <div class="col-md-4">
+            <div class="col-md-8">
             </div>
         </div>
         <div class="topic__infos">
