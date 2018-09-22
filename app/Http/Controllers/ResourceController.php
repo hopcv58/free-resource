@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Employee;
+use App\Models\Job;
 use App\Repositories\EmployeeRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,13 @@ class ResourceController extends Controller
     public function index(Request $request)
     {
         $tabActive = 'resource';
-        $status = $request->status;
+
+        if(!isset($request->status)) {
+            $status = 0;
+        } else {
+            $status = $request->status;
+        }
+
         $employees = $this->employeeRepo->getList(['status' => $status, 'company_id' => Auth::id()]);
 
         return view('resource.index', compact('tabActive', 'employees', 'status'));
@@ -45,5 +52,34 @@ class ResourceController extends Controller
         }
 
         return back()->withInput();
+    }
+
+    public function jobStatus()
+    {
+        $jobs = Job::where('company_id', '=', Auth::user()->id)
+            ->orderBy('id', 'DESC')->get();
+        $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+        $tabActive = 'resource';
+
+        $status = 0;
+        $technicals = config('resources.technical_skill');
+        $postions = config('resources.position');
+        $levels = config('resources.level');
+        return view('resource.job', compact('jobs', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals', 'status'));
+    }
+
+    public function jobHiring()
+    {
+        $jobs = Employee::where('negotiating_id', '=', Auth::user()->id)
+            ->where('status', '2')
+            ->orderBy('id', 'DESC')->get();
+        $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+        $tabActive = 'resource';
+
+        $status = 0;
+        $technicals = config('resources.technical_skill');
+        $postions = config('resources.position');
+        $levels = config('resources.level');
+        return view('resource.job', compact('jobs', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals', 'status'));
     }
 }

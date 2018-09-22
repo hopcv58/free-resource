@@ -1,10 +1,10 @@
 var resource = {
     data: {
-        listEmployeeAvaiable: {},
-        newsNumber: 0
+        listEmployeeAvailable: {},
+        newsNumber: 0,
     },
     extend: function (object) {
-        $.extend(resource.data.listEmployeeAvaiable, object);
+        $.extend(resource.data.listEmployeeAvailable, object);
     },
     showDetail: function(id) {
         $('#more-detail-employee-' + id).collapse('show')
@@ -22,14 +22,15 @@ var resource = {
     hideChatBox: function() {
         $('.chat-box').css('display', 'none');
     },
-    confirmHired: function(employId) {
+    confirmHired: function (employId) {
         $('#id-employess-hired').attr('value', employId);
         $('#confirmHired').modal('show');
+        $('#confirm-hired-btn').attr('onclick', 'resource.confirmHireSubmit(' + employId + ')');
     },
-    searchEmployByName: function() {
+    searchEmployByName: function () {
         var keySearch = $('#search-name').val().toLowerCase();
         var result = [];
-        var arr = Object.values(resource.data.listEmployeeAvaiable);
+        var arr = Object.values(resource.data.listEmployeeAvailable);
         var html = '';
         var number = 0;
         $.each(arr, function( key, element ) {
@@ -71,9 +72,6 @@ var resource = {
                         "                            <td>" + element.free_begin + "</td>\n" +
                         "                            <td>" + element.free_end + "</td>\n" +
                         "                            <td>"+ price + "</td>\n" +
-                        "                            <td>\n" +
-                        "                                    <a class=\"btn-approve\" onclick=\"resource.callTriggerApproveHire("+element.id +")\">Approve</a>\n" +
-                        "                            </td>\n" +
                         "                        </tr>";
                 } else
                     {
@@ -96,6 +94,20 @@ var resource = {
             }
         });
         $('#result-search').html(html);
+    },
+    confirmHireSubmit: function (employId) {
+        $.ajax({
+            method: 'POST',
+            url: $("#form-confirm-hire").attr('action'),
+            data: $("#form-confirm-hire").serialize()
+        }).done(function (res) {
+            if (res.meta.status = 200) {
+                //     $("#employee" + employId).hide();
+                // }
+                // $('#confirmHired').modal('hide');
+                location.reload()
+            }
+        });
     },
     callTriggerApproveHire: function(idEmployee) {
         $('#id-employess-hired').attr('value', idEmployee);

@@ -2,7 +2,7 @@
     <div class="sidebar-left">
         <div class="row resource-sidebar">
             <div class="col-md-12">
-                <h4>CO-WELL ASIA</h4>
+                <h4>{{Auth::user()->name}}</h4>
                 <hr>
             </div>
             <p class="menu-sidebar">UPDATE PROFILE</p>
@@ -11,20 +11,25 @@
             </ul>
             <p class="menu-sidebar">EMPLOYEE MANAGE</p>
             <ul>
-                <li><a href="{{route('resource.index') . '?status=0'}}" @if($status == 0) class="link-selected" @endif>Employee
+                <li><a href="{{route('resource.index') . '?status=0'}}" @if($status == 0 && Request::route()->getName() == 'resource.index') class="link-selected" @endif>Employee
                         Non Public</a></li>
-                <li><a href="{{route('resource.index') . '?status=1'}}" @if($status == 1) class="link-selected" @endif>Employee
+                <li><a href="{{route('resource.index') . '?status=1'}}" @if($status == 1 && Request::route()->getName() == 'resource.index') class="link-selected" @endif>Employee
                         Public</a></li>
-                <li><a href="{{route('resource.index') . '?status=2'}}" @if($status == 2) class="link-selected" @endif>Employee
+                <li><a href="{{route('resource.index') . '?status=2'}}" @if($status == 2 && Request::route()->getName() == 'resource.index') class="link-selected" @endif>Employee
                         In Negotiate</a></li>
-                <li><a href="{{route('resource.index') . '?status=3'}}" @if($status == 3) class="link-selected" @endif>Employee
+                <li><a href="{{route('resource.index') . '?status=3'}}" @if($status == 3 && Request::route()->getName() == 'resource.index') class="link-selected" @endif>Employee
                         Hired</a></li>
-                <li><a href="{{route('resource.index') . '?status=4'}}" @if($status == 4) class="link-selected" @endif>Employee
+                <li><a href="{{route('resource.index') . '?status=4'}}" @if($status == 4 && Request::route()->getName() == 'resource.index') class="link-selected" @endif>Employee
                         Completed</a></li>
+            </ul>
+            <p class="menu-sidebar">DEMAND JOB MANAGE</p>
+            <ul>
+                <li><a href="{{route('resource.job')}}" @if(Request::route()->getName() == 'resource.job') class="link-selected" @endif>Job Created</a></li>
+                <li><a href="{{route('resource.job.negotiating')}}" @if(Request::route()->getName() == 'resource.job.negotiating') class="link-selected" @endif>Negotiating</a></li>
             </ul>
             <p class="menu-sidebar">DEVICE MANAGE</p>
             <ul>
-                <li><a href="">Device Avaiable</a></li>
+                <li><a href="">Device Available</a></li>
                 <li><a href="">Device In Negotiate</a></li>
                 <li><a href="">Device Hired</a></li>
             </ul>

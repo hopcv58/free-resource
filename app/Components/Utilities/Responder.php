@@ -1,9 +1,4 @@
 <?php
-/**
- * Created by Co-well.
- * Date: 7/5/2017
- * Time: 2:14 PM
- */
 namespace App\Components\Utilities;
 
 use Illuminate\Database\Eloquent\Model;
@@ -154,7 +149,7 @@ class Responder
                 case 'application/xml':
                 case 'text/xml':
                 case 'xml':
-                    return response()->xml($content, $status, $header);
+                    return response()->json($content, $status, $header);
                     break;
 
                 case 'application/json':
@@ -197,12 +192,12 @@ class Responder
      * @param $header
      * @return array
      */
-    private static function header ($header)
+    private static function header($header)
     {
-        // TODO: updating...
         $header['Content-Language'] = App::getLocale();
-        $header['X-Powered-By'] = 'Golftect Gdo';
+        $header['X-Powered-By'] = 'Free Resource';
         $header['X-Version'] = '1';
+        $header['Accept'] = 'json';
 
         return $header;
     }

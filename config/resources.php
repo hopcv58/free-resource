@@ -8,8 +8,7 @@ return [
     ],
     'position' => [
         'dev' => 'Developer',
-        'brse' => 'BrSE',
-        'teamlead' => 'Team Lead',
+        'manager' => 'Manager',
         'qa' => 'QA',
         'designer' => 'Designer',
         'comtor' => 'Comtor'
@@ -24,11 +23,15 @@ return [
     ],
     'upload_path' => 'upload/img_product',
     'technical_skill' => [
-        'dev'=> ['PHP', 'C#', '.NET', 'JAVA'],
+        'dev'=> ['PHP', 'C#', '.NET', 'JAVA', 'Android', 'iOS'],
         'comtor' => ['Japanese', 'English', 'Korean', 'Chinese'],
-        'brse' => [],
-        'teamlead' => [],
-        'qa' => ['PQA', 'SQA'],
-        'designer' => []
+        'manager' => ['BrSE', 'SubBSE', 'PM'],
+        'qa' => ['PQA', 'SQA', 'QA Lead'],
+        'designer' => ['Designer']
+    ],
+    'real_price' => [
+        'hour' => 240,
+        'day' => 30,
+        'month' => 1,
     ]
 ];

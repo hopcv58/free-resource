@@ -22,7 +22,7 @@ class EmployeeRepository extends Repository
 
     public function getList($condition)
     {
-        $query = Employee::where($condition )->get();
-        return $query;
+        $query = Employee::where($condition);
+        return $query->orderBy('id', 'DESC')->get();
     }
 }

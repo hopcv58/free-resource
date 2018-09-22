@@ -24,11 +24,16 @@ class DeviceController extends Controller
      */
     public function index()
     {
-        $devices = Device::where('status', 0 )->get();
+        $devices = Device::where('status', 0 )
+            ->where('company_id', '!=', Auth::user()->id)
+            ->orderBy('id', 'DESC')->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'device';
+        $technicals = config('resources.technical_skill');
+        $postions = config('resources.position');
+        $levels = config('resources.level');
 
-        return view('device.index', compact('devices', 'colorAvt', 'tabActive'));
+        return view('device.index', compact('devices', 'colorAvt', 'tabActive', 'postions', 'technicals', 'levels'));
     }
 
     public function create()
@@ -51,7 +56,10 @@ class DeviceController extends Controller
         $result = Device::create($input);
         $devices = Device::where('status', 0 )->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
-        return view('device.index', compact('devices', 'colorAvt'));
+        $technicals = config('resources.technical_skill');
+        $postions = config('resources.position');
+        $levels = config('resources.level');
+        return view('device.index', compact('devices', 'colorAvt', 'postions', 'technicals', 'levels'));
     }
 
     public function show($id)

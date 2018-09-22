@@ -1,10 +1,10 @@
 {{csrf_field()}}
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-12">Add new job avaiable</label>
+    <label class="col-sm-12">Add new job Available</label>
 </div>
 
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Position</label>
+    <label class="col-sm-2 control-label">Position</label>
     <div class="col-sm-10">
         <select name="position" id="position" class="form-control">
             @foreach($postions as $key => $postion)
@@ -16,7 +16,7 @@
 </div>
 
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Level</label>
+    <label class="col-sm-2 control-label">Level</label>
     <div class="col-sm-10">
         <select name="level" class="form-control">
             @foreach($levels as $key => $level)
@@ -28,7 +28,7 @@
 </div>
 {{--Experience--}}
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Experience</label>
+    <label class="col-sm-2 control-label">Experience</label>
     <div class="col-sm-10">
         <div class="col-md-10" style="padding-left: 0">
             <input type="number" name="exp_num" class="col-md-5 form-control"
@@ -48,14 +48,14 @@
 </div>
 {{--skill--}}
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Skill</label>
+    <label class="col-sm-2 control-label">Skill</label>
     <div class="col-sm-10">
         <input type="text" class="form-control" name="skill" @if(isset($job)) value="{{$job->skill}}" @endif>
     </div>
 </div>
 
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Certificate</label>
+    <label class="col-sm-2 control-label">Certificate</label>
     <div class="col-sm-10">
         <div class="col-md-3">
             Required <input type="radio" name="certificate" value="1" @if(isset($job) && $job->certificate) checked @endif>
@@ -66,7 +66,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Start at</label>
+    <label class="col-sm-2 control-label">Start at</label>
     <div class="col-sm-10">
         <div class="col-md-5 no-padding">
             <input type="date" name="time_start" class="form-control"
@@ -75,14 +75,14 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Detail</label>
+    <label class="col-sm-2 control-label">Detail</label>
     <div class="col-sm-10">
         <input type="text" name="detail" class="form-control"
                @if(isset($job)) value="{{$job->detail}}" @endif>
     </div>
 </div>
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Quantity</label>
+    <label class="col-sm-2 control-label">Quantity</label>
     <div class="col-sm-10">
         <input type="number" name="quantity" class="form-control"
                @if(isset($job)) value="{{$job->quantity}}" @endif>
@@ -90,7 +90,7 @@
 </div>
 
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Price</label>
+    <label class="col-sm-2 control-label">Price</label>
     <div class="col-sm-10">
         <div class="col-md-10" style="padding-left: 0">
             <input type="number" name="price_num" class="col-md-5 form-control"
@@ -114,7 +114,7 @@
     </div>
 </div>
 <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label"></label>
+    <label class="col-sm-2 control-label"></label>
     <div class="col-sm-10">
         <input type="submit" class="btn btn-info" value="Save">
     </div>

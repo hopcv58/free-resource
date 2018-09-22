@@ -50,6 +50,7 @@ class ListEmployeeRequest extends Request
         return [
             'limit' => 'integer|min:0',
             'filters.name' => 'string|min:1|max:100',
+            'filters.company_id' => 'integer|min:1',
             'filters.position' => 'string|min:1|position:100',
             'filters.age' => 'integer|min:18|max:100',
             'filters.level' => 'string|min:1',
@@ -57,6 +58,8 @@ class ListEmployeeRequest extends Request
             'filters.exp_unit' => 'string|in:month,year|required_with:exp_num',
             'filters.skill' => 'string|min:1',
             'filters.free_begin' => 'date_format:Y-m-d',
+            'filters.min_price' => 'integer|min:1',
+            'filters.max_price' => 'integer|min:1',
             'filters.free_end' => 'date_format:Y-m-d',
             'filters.certificate' => 'integer|in:0,1',
         ];

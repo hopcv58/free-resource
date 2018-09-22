@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <h4>Avaiable Employs ({{count($devices)}})</h4>
+            <h4>Available Employs ({{count($devices)}})</h4>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -32,7 +32,7 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-10">
-                            <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time avaiable:</lable> <label class="time-avaiable">{{$item->free_begin}} ~ {{$item->free_end}}</label></p>
+                            <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time Available:</lable> <label class="time-Available">{{$item->free_begin}} ~ {{$item->free_end}}</label></p>
                             <label>Experience: </label> <label class="exp-employ">{{$item->experience['exp_num']}} {{$item->experience['exp_unit']}}</label> <br/>
                             <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label>
                         </div>

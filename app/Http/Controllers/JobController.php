@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Job;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JobController extends Controller
 {
@@ -19,11 +20,16 @@ class JobController extends Controller
      */
     public function index()
     {
-        $jobs = Job::where('status', 0 )->get();
+        $jobs = Job::where('status', 0 )
+            ->where('company_id', '!=', Auth::user()->id)
+            ->orderBy('id', 'DESC')->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'job';
 
-        return view('job.index', compact('jobs', 'colorAvt' , 'tabActive'));
+        $technicals = config('resources.technical_skill');
+        $postions = config('resources.position');
+        $levels = config('resources.level');
+        return view('job.index', compact('jobs', 'colorAvt' , 'tabActive', 'levels', 'postions', 'technicals'));
     }
 
     public function create()
@@ -47,13 +53,15 @@ class JobController extends Controller
             'price_unit' => $input['price_unit'],
         ];
         //hard fix company_id
-        //TODO: remove hard fix
-        $input['company_id'] = 1;
+        $input['company_id'] = Auth::user()->id;
         $result = Job::create($input);
         $jobs = Job::where('status', 0 )->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'job';
-        return view('job.index', compact('jobs', 'colorAvt' , 'tabActive'));
+        $technicals = config('resources.technical_skill');
+        $postions = config('resources.position');
+        $levels = config('resources.level');
+        return view('job.index', compact('jobs', 'colorAvt' , 'tabActive', 'levels', 'postions', 'technicals'));
     }
 
     public function show($id)

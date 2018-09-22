@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="row">
-        @if(count($employees) > 0)
+        @if(count($jobs) > 0)
             <div class="table-responsive">
                 <table class="table table-bordered">
                     <thead>
@@ -25,30 +25,30 @@
                         <th>Level</th>
                         <th>Exp</th>
                         <th style="min-width: 100px">Skill</th>
-                        <th style="min-width: 100px">Free Begin</th>
-                        <th style="min-width: 100px">Free End</th>
+                        <th style="min-width: 100px">Job Start</th>
+                        <th style="min-width: 100px">Job End</th>
                         <th>Price</th>
                         <th>Action</th>
 
                     </tr>
                     </thead>
                     <tbody id="result-search">
-                    @foreach($employees as $key => $employee)
+                    @foreach($jobs as $key => $employee)
                         <tr>
                             <th scope="row">{{$key + 1}}</th>
-                            <td>{{$employee->name}}</td>
+                            <td>{{$employee->title}}</td>
                             <td>{{$employee->position}}</td>
                             <td>{{$employee->level}}</td>
                             <td>{{$employee->experience['exp_num']}} {{$employee->experience['exp_unit']}}</td>
                             <td>{{$employee->skill}}</td>
-                            <td>@if($employee->free_begin){{date('Y-m-d', strtotime($employee->free_begin))}}@else Unknown @endif</td>
-                            <td>@if($employee->free_end){{date('Y-m-d', strtotime($employee->free_end))}}@else Unknown @endif</td>
+                            <td>@if($employee->time_start){{date('Y-m-d', strtotime($employee->free_begin))}}@else Unknown @endif</td>
+                            <td>@if($employee->time_end){{date('Y-m-d', strtotime($employee->free_end))}}@else Unknown @endif</td>
                             <td>{{number_format($employee->price['price_num'])}}$/{{$employee->price['price_unit']}}</td>
                             <td>
-                                @if($status == 0 || $status == 1)
-                                <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
-                                <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                @elseif($status == 2 || Request::route()->getName() == 'resource.job.negotiating')
+                                @if(Request::route()->getName() == 'resource.job')
+                                    <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+                                    <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+                                @elseif(Request::route()->getName() == 'resource.job.negotiating')
                                     <a class="btn-approve" onclick="resource.callTriggerApproveHire({{$employee->id}})">Approve</a>
                                 @endif
                             </td>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label"></label>
                                 <div class="col-sm-10">
-                                    <input type="hidden" name="status" value="3"class="form-control">
+                                    <input type="hidden" name="status" value="3" class="form-control">
                                     <input type="hidden" name="id" id="id-employess-hired" class="form-control">
                                 </div>
                             </div>
@@ -99,8 +99,8 @@
 @section('script')
     <script src="{{ asset('js/my_jquery.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
-        @if($employees)
-        resource.extend({!! $employees !!});
+        @if($jobs)
+        resource.extend({!! $jobs !!});
         @endif
     </script>
 @stop

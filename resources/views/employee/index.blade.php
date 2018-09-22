@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <h4>Avaiable Employs ({{count($employs)}})</h4>
+            <h4>Available Employs ({{count($employs)}})</h4>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -21,14 +21,14 @@
     {{--start item--}}
     @if(count($employs) > 0)
         @foreach($employs as $item)
-            <div class="row employ-item">
+            <div class="row employ-item" id="employee{{$item->id}}">
                 <div class="col-md-2 thumbnail">
                     <p class="img-avatar" style="background-color: {{$colorAvt[array_rand($colorAvt)]}}">{{substr($item->position,0,3)}}</p>
                 </div>
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-10">
-                            <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time avaiable:</lable> <label class="time-avaiable">{{$item->free_begin}} ~ {{$item->free_end}}</label></p>
+                            <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$levels[$item->level]}}</label> | <lable>Time Available:</lable> <label class="time-Available">{{$item->free_begin}} ~ {{$item->free_end}}</label></p>
                             <label>Experience: </label> <label class="exp-employ">{{$item->experience['exp_num']}} {{$item->experience['exp_unit']}}</label> <br/>
                             <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label>
                             <p >
@@ -55,7 +55,9 @@
                                 <lable class="unit-price">/{{$item->price['price_unit']}}</lable>
                             @else <br/><label class="hourly-rate-negotiate">Negotiate</label>
                             @endif
-                            <button type="button" class="btn btn-warning btn-contact-employ" onclick="resource.confirmHired({{$item->id}})">NEGOTIATE</button>
+                            <button type="button" class="btn btn-warning btn-contact-employ"
+                                    onclick="resource.confirmHired({{$item->id}})">NEGOTIATE
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -69,7 +71,7 @@
     <div class="row chat-box">
         <p class="title-chat">Contact with representative <label class="close-chat" onclick="resource.hideChatBox()">Close</label></p>
         <div class="col-md-12" style="height: 250px">
-            <label>Co-well ASIA</label>
+            <label>{{Auth::user()->name}}</label>
             <p class="content-chat-defaut">
                 Hi you, Can I help you? Please type your question
             </p>
@@ -92,22 +94,22 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title"></h4>
                 </div>
-                <form method='POST' action="{{route('home.employ.updateStatus')}}" id="form-confirm-hire">
-                    <input type="hidden" name="_method" value="POST">
+                <form method='POST' action="/api/employee/update" id="form-confirm-hire">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                        <label class="col-sm-2 control-label"></label>
                         <div class="col-sm-10">
-                            <input type="hidden" name="status" value="2"class="form-control">
+                            <input type="hidden" name="status" value="2" class="form-control">
                             <input type="hidden" name="id" id="id-employess-hired" class="form-control">
+                            <input type="hidden" name="company_id" class="form-control" value={{Auth::user()->id}}>
                         </div>
                     </div>
                     <div class="form-group">
-                        <p for="inputEmail3" class="col-sm-12" style="padding:  0 20px 20px 20px">Do you want to negotiate with this developer?</p>
+                        <p class="col-sm-12" style="padding:  0 20px 20px 20px">Do you want to negotiate with this developer?</p>
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Yes</button>
+                    <button type="button" class="btn btn-success" id="confirm-hired-btn">Yes</button>
                 </div>
                 </form>
             </div>

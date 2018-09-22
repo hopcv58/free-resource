@@ -1,26 +1,38 @@
 <div class="sidebar-left">
     <div class="row lever-employ">
-        <label>Position: </label>
-        <select class="form-control">
-            <optgroup label="Dev">
-                <option value="1">Lap trinh vien IOS</option>
-                <option value="2">Lap trinh vien PHP</option>
-                <option value="3">Lap trinh vien AOS</option>
-            </optgroup>
-            <optgroup label="Quality Solution">
-                <option value="4">Tester</option>
-                <option value="5">QA</option>
-                <option value="6">QS</option>
-            </optgroup>
-            <optgroup label="BSE">
-                <option value="8">SubBSE</option>
-            </optgroup>
-        </select>
-        <label>From: </label>
-        <input type="date" name="datefrom" placeholder="YYYY-MM-DD" class="form-control">
+        <form action="" id="search-form">
+            <label>Position: </label>
+            <select name="position" id="position" class="form-control">
+                <option value=""></option>
+                @foreach($postions as $key => $postion)
+                    <optgroup label="{{$postion}}">
+                        @foreach($technicals[$key] as $technical)
+                            <option value="{{$technical}}"
+                                    @if(isset($employee) && $employee->position == $technical) selected @endif >{{$technical}}</option>
+                        @endforeach
+                    </optgroup>
+                @endforeach
+            </select>
 
-        <label>To: </label>
-        <input type="date" name="datefrom" placeholder="YYYY-MM-DD" class="form-control">
-        <a class="btn-search"><p>SEARCH</p></a>
+            <label>Level: </label>
+            <div class="row">
+                @foreach($levels as $key => $level)
+                    <div class="col-md-6"><input type="checkbox" name="level[]" value={{$key}}>
+                        {{$level}}
+                    </div>
+                @endforeach
+            </div>
+            <label>From: </label>
+            <input type="date" name="date_begin" placeholder="YYYY-MM-DD" class="form-control">
+            <label>To: </label>
+            <input type="date" name="date_end" class="form-control">
+            <label>Min price($/Day): </label>
+            <input type="text" name="min_price" class="form-control">
+            <label>Max price($/Day): </label>
+            <input type="text" name="max_price" class="form-control">
+            <div>
+                <a class="btn-search" onclick="$('#search-form').submit();"><p>SEARCH</p></a>
+            </div>
+        </form>
     </div>
 </div>
