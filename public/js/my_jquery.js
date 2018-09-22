@@ -5,13 +5,11 @@ var resource = {
     },
     extend: function (object) {
         $.extend(resource.data.listEmployeeAvaiable, object);
-        // console.log(resource.data.listEmployeeAvaiable);
     },
     showDetail: function(id) {
         $('#more-detail-employee-' + id).collapse('show')
         var htmlBtnHide = "<a class=\"link-expan-detail\" id=\"link-expan-detail-\"+ id + \"\" onclick=\"resource.hideDetail("+ id + ")\">Hide detail...</a>";
         $('#box-link-expan-detail-' + id).html(htmlBtnHide);
-        console.log('id');
     },
     hideDetail: function(id) {
         $('#more-detail-employee-' + id).collapse('hide')
@@ -41,7 +39,8 @@ var resource = {
                 var exp = element['experience']['exp_num'] + ' ' + element['experience']['exp_unit'];
                 var price = element['price']['price_num'] + '$/' + element['price']['price_unit'];
                 var url = window.location.origin + "/employee/"+ element.id +"/edit?status=" + element.status;
-                if(element.status == 0) {
+
+                if(element.status == 0 || element.status == 1) {
                     number++;
                     html += "<tr>\n" +
                         "                            <th scope=\"row\">"+ number +"</th>\n" +
@@ -58,7 +57,9 @@ var resource = {
                         "                                <a><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a>\n" +
                         "                            </td>\n" +
                         "                        </tr>";
-                } else {
+                }
+                if (element.status == 2)
+                {
                     number++;
                     html += "<tr>\n" +
                         "                            <th scope=\"row\">"+ number +"</th>\n" +
@@ -72,6 +73,22 @@ var resource = {
                         "                            <td>"+ price + "</td>\n" +
                         "                            <td>\n" +
                         "                                    <a class=\"btn-approve\" onclick=\"resource.callTriggerApproveHire("+element.id +")\">Approve</a>\n" +
+                        "                            </td>\n" +
+                        "                        </tr>";
+                } else
+                    {
+                    number++;
+                    html += "<tr>\n" +
+                        "                            <th scope=\"row\">"+ number +"</th>\n" +
+                        "                            <td>" + element.name + "</td>\n" +
+                        "                            <td>" + element.position + "</td>\n" +
+                        "                            <td>"+ element.level +"</td>\n" +
+                        "                            <td> " + exp +"</td>\n" +
+                        "                            <td>" + element.skill + "</td>\n" +
+                        "                            <td>" + element.free_begin + "</td>\n" +
+                        "                            <td>" + element.free_end + "</td>\n" +
+                        "                            <td>"+ price + "</td>\n" +
+                        "                            <td>\n" +
                         "                            </td>\n" +
                         "                        </tr>";
                 }

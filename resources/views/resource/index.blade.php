@@ -45,10 +45,10 @@
                             <td>@if($employee->free_end){{date('Y-m-d', strtotime($employee->free_end))}}@else Unknown @endif</td>
                             <td>{{number_format($employee->price['price_num'])}}$/{{$employee->price['price_unit']}}</td>
                             <td>
-                                @if($status == 0)
+                                @if($status == 0 || $status == 1)
                                 <a href="{{route('employee.edit', $employee->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                 <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                @elseif($status == 1)
+                                @elseif($status == 2)
                                     <a class="btn-approve" onclick="resource.callTriggerApproveHire({{$employee->id}})">Approve</a>
                                 @endif
                             </td>
@@ -76,7 +76,7 @@
                             <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-2 control-label"></label>
                                 <div class="col-sm-10">
-                                    <input type="hidden" name="status" value="2"class="form-control">
+                                    <input type="hidden" name="status" value="3"class="form-control">
                                     <input type="hidden" name="id" id="id-employess-hired" class="form-control">
                                 </div>
                             </div>

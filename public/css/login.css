@@ -1,3 +1,9 @@
 .login-page{
     background-color: white;
 }
+.login-page .container-fluid {
+    /*background-color: grey;*/
+}
+.text-center{
+
+}

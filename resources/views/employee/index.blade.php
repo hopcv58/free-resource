@@ -98,7 +98,7 @@
                     <div class="form-group">
                         <label for="inputEmail3" class="col-sm-2 control-label"></label>
                         <div class="col-sm-10">
-                            <input type="hidden" name="status" value="1"class="form-control">
+                            <input type="hidden" name="status" value="2"class="form-control">
                             <input type="hidden" name="id" id="id-employess-hired" class="form-control">
                         </div>
                     </div>

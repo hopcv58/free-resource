@@ -93,6 +93,10 @@
 }
 .menu-sidebar{
     padding-left: 15px;
+    font-weight: bold;
+}
+.menu-sidebar ul span {
+   margin-right: 15px!important;
 }
 .unit-price {
     font-weight: normal;
@@ -138,7 +142,7 @@
     font-size: 13px;
 }
 .link-selected{
-    color: black!important;
+    color: #438606!important;
 }
 .link-contact{
     font-size: 13px;
