@@ -45,7 +45,10 @@ class EmployeeController extends Controller
         //TODO: remove hard fix
         $input['company_id'] = 1;
         $result = Employee::create($input);
-        return view('employ.index');
+        $employs = Employee::where('status', 0 )->get();
+        $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+        $tabActive = 'employ';
+        return view('employee.index', compact('employs', 'colorAvt' , 'tabActive'));
     }
 
     public function show($id)

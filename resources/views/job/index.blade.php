@@ -25,7 +25,7 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-10">
-                            <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time avaiable:</lable> <label class="time-avaiable">{{$item->free_begin}} ~ {{$item->free_end}}</label></p>
+                            <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time need:</lable> <label class="time-avaiable">{{$item->time_start}} ~ {{$item->time_end}}</label></p>
                             <label>Experience: </label> <label class="exp-employ">{{$item->experience['exp_num']}} {{$item->experience['exp_unit']}}</label> <br/>
                             <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label>
                         </div>
