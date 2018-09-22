@@ -70,7 +70,7 @@ class ResourceController extends Controller
 
     public function jobHiring()
     {
-        $jobs = Employee::where('negotiating_id', '=', Auth::user()->id)
+        $employees = Employee::where('negotiating_id', '=', Auth::user()->id)
             ->where('status', '2')
             ->orderBy('id', 'DESC')->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
@@ -80,6 +80,6 @@ class ResourceController extends Controller
         $technicals = config('resources.technical_skill');
         $postions = config('resources.position');
         $levels = config('resources.level');
-        return view('resource.job', compact('jobs', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals', 'status'));
+        return view('resource.index', compact('employees', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals', 'status'));
     }
 }

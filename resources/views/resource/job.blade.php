@@ -20,7 +20,7 @@
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
+                        <th>Title</th>
                         <th>Position</th>
                         <th>Level</th>
                         <th>Exp</th>
