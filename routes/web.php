@@ -24,6 +24,7 @@ Route::resource('resource', 'ResourceController', ['except' => 'show']);
 Route::resource('device', 'DeviceController');
 Route::resource('job', 'JobController');
 Route::post('/myResource/update', 'ResourceController@updateStatus')->name('home.employ.updateStatus');
+Route::post('/myResource/updateStatusDevice', 'ResourceController@updateStatusDevice')->name('home.device.updateStatus');
 Route::get('/resource/job', 'ResourceController@jobStatus')->name('resource.job');
 Route::get('/resource/job/negotiating', 'ResourceController@jobNegotiating')->name('resource.job.negotiating');
 Route::get('/resource/job/hired', 'ResourceController@jobHired')->name('resource.job.hired');

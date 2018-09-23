@@ -56,6 +56,13 @@ class ResourceController extends Controller
 
         return back()->withInput();
     }
+    public function updateStatusDevice(Request $request)
+    {
+        Device::where('id', $request->id)->update([
+            "status" => $request->status
+        ]);
+        return back()->withInput();
+    }
 
     public function jobStatus()
     {

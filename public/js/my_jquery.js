@@ -207,5 +207,9 @@ var resource = {
     callTriggerApproveHire: function(idEmployee) {
         $('#id-employess-hired').attr('value', idEmployee);
         $('#confirmHired').modal('show');
+    },
+    callTriggerApproveHireDevice: function(idDevice) {
+        $('#id-device-hired').attr('value', idDevice);
+        $('#confirmHired').modal('show');
     }
 };

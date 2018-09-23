@@ -44,10 +44,10 @@
                             <td>@if($device->free_end){{date('Y-m-d', strtotime($device->free_end))}}@else Unknown @endif</td>
                             <td>{{number_format($device->price['price_num'])}}$/{{$device->price['price_unit']}}</td>
                             <td>
-                                @if(($status == 0 || $status == 1) && Request::route()->getName() == 'resource.device')
+                                @if(($status == 0) && Request::route()->getName() == 'resource.device')
                                     <a href="{{route('device.edit', $device->id)}}"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
                                     <a><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
-                                @elseif($status == 2)
+                                @elseif($status == 1)
                                     <a class="btn-approve" onclick="resource.callTriggerApproveHireDevice({{$device->id}})">Approve</a>
                                 @endif
                             </td>
@@ -69,18 +69,18 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                         <h4 class="modal-title"></h4>
                     </div>
-                    <form method='POST' action="{{route('home.employ.updateStatus')}}" id="form-confirm-hire">
+                    <form method='POST' action="{{route('home.device.updateStatus')}}" id="form-confirm-hire">
                         <input type="hidden" name="_method" value="POST">
                         {{csrf_field()}}
                         <div class="form-group">
                             <label class="col-sm-2 control-label"></label>
                             <div class="col-sm-10">
-                                <input type="hidden" name="status" value="3"class="form-control">
-                                <input type="hidden" name="id" id="id-employess-hired" class="form-control">
+                                <input type="hidden" name="status" value="2"class="form-control">
+                                <input type="hidden" name="id" id="id-device-hired" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">
-                            <p class="col-sm-12" style="padding:  0 20px 20px 20px">Approve for negotiating with this employee?</p>
+                            <p class="col-sm-12" style="padding:  0 20px 20px 20px">Approve for negotiating with this device?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

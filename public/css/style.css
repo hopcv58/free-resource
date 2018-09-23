@@ -115,7 +115,7 @@
     font-size: 18px;
     padding-top: 35px;
 }
-.lever-employ{
+.lever-employ, .resource-sidebar{
     border-top: 3px solid #70ac2e;
 
 }
@@ -184,4 +184,15 @@
 /*end chat*/
 .btn-approve{
     cursor: pointer;
+}
+.avt-name-comapy{
+    background: #e1e1e1;
+    color: white;
+    height: 50px;
+    width: 50px;
+    border-radius: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 10px;
+    font-size: 20px;
 }
