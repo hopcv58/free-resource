@@ -1,8 +1,8 @@
 <div id="header" class="docs-header">
     <div class="topic">
-        <div class="container">
+        <div class="container" id="slide-custom">
             <div class="col-md-4" style="width: 400px;min-height: 120px;">
-                <img src="{{asset('images/icon1.png')}}" style="max-width: 100%;height: auto;">
+{{--                <img src="{{asset('images/icon1.png')}}" style="max-width: 100%;height: auto;">--}}
             </div>
             <div class="col-md-8">
             </div>

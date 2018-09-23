@@ -196,3 +196,31 @@
     padding-top: 10px;
     font-size: 20px;
 }
+/*footer*/
+#footer{
+    background-color: #214140;
+    color: white;
+    margin: auto;
+}
+#footer a{
+    color: white;
+}
+#footer h5{
+    font-size: 14px!important;
+    border-bottom: 1px solid #415d5c;
+    padding-bottom: 20px;
+}
+#footer #logo-cowell{
+    background-color: white;
+    margin-top: 20px;
+}
+#footer .thumbnail{
+    background: none;
+    border: none;
+}
+.docs-header {
+    background: url(../images/slider.png) repeat 0 0!important;
+}
+.topic__infos{
+    background-color: #6bd571!important;
+}

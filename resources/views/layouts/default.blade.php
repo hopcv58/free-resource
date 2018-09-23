@@ -41,6 +41,7 @@
         </div>
     </div>
 </div>
+@include('parts.footer')
 <script src='http://cdn.ckeditor.com/4.6.2/standard/ckeditor.js'></script>
 <script src="{{ URL::asset('js/app.js') }}"></script>
 <!-- custom script -->
