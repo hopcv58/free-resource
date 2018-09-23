@@ -49,9 +49,19 @@ class ResourceController extends Controller
                     "rented_id" => $request->company_id
                 ]);
             }
-        } else { // HR/công ty xác nhận tình trạng thuê
+        } elseif ($request->status == 2) {
             Employee::where('id', $request->id)->update([
-                "status" => $request->status
+                "status" => $request->status,
+                "negotiating_id" => Auth::user()->id
+            ]);
+        } elseif ($request->status == 3) {
+            Employee::where('id', $request->id)->update([
+                "status" => $request->status,
+                "rent_id" => Auth::user()->id
+            ]);
+        } else {
+            Employee::where('id', $request->id)->update([
+                "status" => $request->status,
             ]);
         }
 
@@ -114,7 +124,7 @@ class ResourceController extends Controller
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'resource';
 
-        $status = 0;
+        $status = 3;
         $technicals = config('resources.technical_skill');
         $postions = config('resources.position');
         $levels = config('resources.level');
@@ -146,7 +156,8 @@ class ResourceController extends Controller
                 ->where('company_id', '!=', $job->company_id)
                 ->orWhere(function ($query) use ($job) {
                     $query->where('status', '=', 2)
-                        ->where('negotiating_id', '!=', $job->company_id);
+                        ->where('negotiating_id', '!=', $job->company_id)
+                        ->where('company_id', '!=', $job->company_id);
                 });
         });
         $query = $employs;

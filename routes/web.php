@@ -15,7 +15,7 @@ Route::get('/base', function () {
     return view('welcome');
 });
 
-Route::get('/', 'ResourceController@index');
+Route::get('/', 'EmployeeController@index');
 Route::get('/home', 'ResourceController@index');
 Route::auth();
 Route::get('/myResource', 'HomeController@myResource')->name('home.myResource');

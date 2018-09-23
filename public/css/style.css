@@ -221,6 +221,18 @@
 .docs-header {
     background: url(../images/slider.png) repeat 0 0!important;
 }
-.topic__infos{
-    background-color: #6bd571!important;
+.topic__infos {
+    background-color: #6bd571 !important;
+}
+.star-required{
+    display: none;
+}
+.input-required .star-required {
+    display: block;
+}
+.required-alert {
+    display: none;
+}
+.text-danger .required-alert {
+    display: block;
 }

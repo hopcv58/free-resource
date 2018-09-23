@@ -272,6 +272,21 @@ var resource = {
         $('#id-employess-hired').attr('value', idEmployee);
         $('#confirmHired').modal('show');
     },
+    callTriggerApproveDone: function(idEmployee) {
+        $('#id-employess-done').attr('value', idEmployee);
+        $('#confirmDone').modal('show');
+    },
+    callDeleteConfirm: function (idEmployee) {
+        $('#id-employess-delete').attr('value', idEmployee);
+        $.ajax({
+            url: $("#delete-form").attr('action') + "/" + idEmployee,
+            method: 'POST',
+            data: $("#delete-form").serialize(),
+            success: function (result) {
+                location.reload()
+            }
+        });
+    },
     callTriggerApproveHireDevice: function(idDevice) {
         $('#id-device-hired').attr('value', idDevice);
         $('#confirmHired').modal('show');

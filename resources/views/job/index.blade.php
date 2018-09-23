@@ -4,7 +4,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <h4>Available Employs ({{count($jobs)}})</h4>
+            <h4>Available Jobs ({{count($jobs)}})</h4>
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-3">
@@ -25,9 +25,11 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-10">
+                            <h4>{{$item->title}}</h4>
                             <p><label class="position-employ">{{$item->position}}</label> | <label class="level-title">{{$item->level}}</label> | <lable>Time need:</lable> <label class="time-Available">{{$item->time_start}} ~ {{$item->time_end}}</label></p>
                             <label>Experience: </label> <label class="exp-employ">{{$item->experience['exp_num']}} {{$item->experience['exp_unit']}}</label> <br/>
-                            <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label>
+                            <label>Skill: </label> <label class="skill-employ">{{$item->skill}}</label><br>
+                            <label>Quantity: </label> <label class="skill-employ">{{$item->quantity}}</label>
                         </div>
                         <div class="col-md-2" style="text-align: center">
                             @if($item->price != '')
@@ -35,7 +37,7 @@
                                 <lable class="unit-price">/{{$item->price['price_unit']}}</lable>
                             @else <br/><label class="hourly-rate-negotiate">Negotiate</label>
                             @endif
-                            <button type="button" class="btn btn-warning btn-contact-employ">VIEW DETAIL</button>
+                            <button type="button" class="btn btn-warning btn-contact-employ">SUGGEST</button>
                         </div>
                     </div>
                 </div>

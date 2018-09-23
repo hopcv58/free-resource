@@ -3,7 +3,6 @@
         <div class="row resource-sidebar">
             <div class="col-md-12" style="padding: 0 0 7px 0; border-bottom: 1px solid #e1e1e1; margin-bottom: 10px">
 
-                <div class="col-md-3" style="padding: 0"><p class="avt-name-comapy">{{substr(Auth::user()->name,0,2)}}</p> </div>
                 <h4>{{Auth::user()->name}}</h4>
             </div>
             <p class="menu-sidebar">UPDATE PROFILE</p>

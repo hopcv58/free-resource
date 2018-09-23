@@ -22,12 +22,7 @@ class EmployeeController extends Controller
      */
     public function index(Request $request)
     {
-        $employs = Employee::where('status', 1)
-            ->where('company_id', '!=', Auth::user()->id)
-            ->orWhere(function ($query) {
-                $query->where('status', '=', 2)
-                    ->where('negotiating_id', '!=', Auth::user()->id);
-            });
+        $employs = Employee::query();
         if ($request->position) {
             $employs = $employs->where('position', $request->position);
         }
@@ -40,6 +35,16 @@ class EmployeeController extends Controller
         if ($request->level) {
             $employs = $employs->whereIn('level', $request->level);
         }
+
+        $employs = $employs->where(function ($query) use ($request) {
+            $query->where('status', 1)
+                ->where('company_id', '!=', Auth::user()->id)
+                ->orWhere(function ($query) use ($request) {
+                    $query->where('status', 2)
+                        ->where('company_id', '!=', Auth::user()->id)
+                        ->where('negotiating_id', '!=', Auth::user()->id);
+                });
+        });
         $employs = $employs->orderBy('id', 'DESC')
             ->get();
         if ($request->min_price || $request->max_price) {
@@ -55,7 +60,6 @@ class EmployeeController extends Controller
                 }
             }
         }
-
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
         $tabActive = 'employ';
         $levels = config('resources.level');
@@ -93,14 +97,21 @@ class EmployeeController extends Controller
         if ($request->fully_free) {
             $input['free_end'] = null;
         }
+        if ($request->is_public) {
+            $input['status'] = 1;
+        } else {
+            $input['status'] = 0;
+        }
         $result = Employee::create($input);
         $employs = Employee::where('status', 0)->get();
         $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
-        $tabActive = 'employ';
+        $tabActive = 'resource';
         $levels = config('resources.level');
         $postions = config('resources.position');
         $technicals = config('resources.technical_skill');
-        return view('employee.index', compact('employs', 'colorAvt', 'tabActive', 'levels', 'postions', 'technicals'));
+        $success = 1;
+        $titleForm = 'Add new employee';
+        return view('employee.create', compact('employee', 'levels', 'postions', 'tabActive', 'status', 'technicals', 'success','titleForm'));
     }
 
     public function show($id)
@@ -127,6 +138,7 @@ class EmployeeController extends Controller
     {
         $levels = config('resources.level');
         $postions = config('resources.position');
+        $technicals = config('resources.technical_skill');
         $employee = Employee::find($id);
         $employee->name = $request->name;
         $employee->position = $request->position;
@@ -143,8 +155,17 @@ class EmployeeController extends Controller
             "price_num" => $request->price_num,
             "price_unit" => $request->price_unit
         ];
+        if ($request->is_public) {
+            $employee->status = 1;
+        } else {
+            $employee->status = 0;
+        }
         $result = $employee->save();
-        return view('employee.detail', compact('employee', 'levels', 'postions'));
+        $titleForm = 'Update employee info';
+        $status = $employee->status;
+        $tabActive = 'resource';
+        $success = 1;
+        return view('employee.edit', compact('titleForm','employee', 'levels', 'postions', 'tabActive', 'status', 'technicals', 'success'));
     }
 
     public function apiGetJobListCurrent(ListEmployeeRequest $request)
