@@ -109,7 +109,7 @@
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-success" id="confirm-hired-btn">Yes</button>
+                    <button type="submit" class="btn btn-success" id="confirm-hired-btn">Yes</button>
                 </div>
                 </form>
             </div>

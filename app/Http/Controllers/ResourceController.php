@@ -45,7 +45,8 @@ class ResourceController extends Controller
                 return back()->withInput()->withErrors(['Can not select your employee. Please select another one']);
             } else {
                 Employee::where('id', $request->id)->update([
-                    "status" => $request->status
+                    "status" => $request->status,
+                    "rented_id" => $request->company_id
                 ]);
             }
         } else { // HR/công ty xác nhận tình trạng thuê
@@ -58,9 +59,21 @@ class ResourceController extends Controller
     }
     public function updateStatusDevice(Request $request)
     {
-        Device::where('id', $request->id)->update([
-            "status" => $request->status
-        ]);
+        if ($request->status == 1) { // người dùng đang thương lượng
+            $find = Device::find($request->id);
+            if ($find->company_id == Auth::id()) { // không thể thuê nhân viên của mình
+                return back()->withInput()->withErrors(['Can not select your device. Please select another one']);
+            } else {
+                Device::where('id', $request->id)->update([
+                    "status" => $request->status
+//                    "rented_id" => $request->company_id
+                ]);
+            }
+        } else {
+            Device::where('id', $request->id)->update([
+                "status" => $request->status
+            ]);
+        }
         return back()->withInput();
     }
 
