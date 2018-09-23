@@ -1,6 +1,6 @@
 {{csrf_field()}}
 <div class="form-group">
-    <label class="col-sm-12">Add new job Available</label>
+    <label class="col-sm-12">{{$titleForm}}</label>
 </div>
 
 <div class="form-group">

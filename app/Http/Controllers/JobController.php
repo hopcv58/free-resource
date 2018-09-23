@@ -39,7 +39,8 @@ class JobController extends Controller
         $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
         $status = -1;
-        return view('job.create', compact('levels', 'postions', 'tabActive', 'technicals', 'status'));
+        $titleForm = 'Create new job';
+        return view('job.create', compact('levels', 'postions', 'tabActive', 'technicals', 'status', 'titleForm'));
     }
 
     public function store(Request $request)
@@ -81,7 +82,9 @@ class JobController extends Controller
         $postions = config('resources.position');
         $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
-        return view('job.edit', compact('job', 'levels', 'postions', 'tabActive', 'technicals'));
+        $status = -1;
+        $titleForm = 'Update job jnfo';
+        return view('job.edit', compact('job', 'levels', 'postions', 'tabActive', 'technicals', 'status', 'titleForm'));
     }
 
     public function update(Request $request, $id)

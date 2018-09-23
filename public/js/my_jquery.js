@@ -109,7 +109,7 @@ var resource = {
                 result.push(element);
                 var exp = element['experience']['exp_num'] + ' ' + element['experience']['exp_unit'];
                 var price = element['price']['price_num'] + '$/' + element['price']['price_unit'];
-                var url = window.location.origin + "/employee/" + element.id + "/edit?status=" + element.status;
+                var url = window.location.origin + "/job/" + element.id + "/edit?status=" + element.status;
 
                 if (element.status == 0) {
                     number++;
@@ -211,14 +211,14 @@ var resource = {
                 } else {// no action
                     number ++;
                     html += "<tr>\n" +
-                        "                            <th scope=\"row\">{{$key + 1}}</th>\n" +
-                        "                            <td>{{$device->name}}</td>\n" +
-                        "                            <td>{{$device->branch}}</td>\n" +
-                        "                            <td>{{$device->version}}</td>\n" +
-                        "                            <td>{{$device->detail}}</td>\n" +
-                        "                            <td>@if($device->free_begin){{date('Y-m-d', strtotime($device->free_begin))}}@else Unknown @endif</td>\n" +
-                        "                            <td>@if($device->free_end){{date('Y-m-d', strtotime($device->free_end))}}@else Unknown @endif</td>\n" +
-                        "                            <td>{{number_format($device->price['price_num'])}}$/{{$device->price['price_unit']}}</td>\n" +
+                        "                            <th scope=\"row\">" + number + "</th>\n" +
+                        "                            <td>" + element.name + "</td>\n" +
+                        "                            <td>" + element.branch + "</td>\n" +
+                        "                            <td>" + element.version + "}</td>\n" +
+                        "                            <td>" + element.detail + "</td>\n" +
+                        "                            <td>" + element.free_begin + "</td>\n" +
+                        "                            <td>" + element.free_end + "</td>\n" +
+                        "                            <td>" + price + "</td>\n" +
                         "                            <td>\n" +
                         "                            </td>\n" +
                         "                        </tr>";
