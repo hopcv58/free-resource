@@ -45,8 +45,7 @@ class ResourceController extends Controller
                 return back()->withInput()->withErrors(['Can not select your employee. Please select another one']);
             } else {
                 Employee::where('id', $request->id)->update([
-                    "status" => $request->status,
-                    "rented_id" => $request->company_id
+                    "status" => $request->status
                 ]);
             }
         } elseif ($request->status == 2) {
@@ -55,9 +54,10 @@ class ResourceController extends Controller
                 "negotiating_id" => Auth::user()->id
             ]);
         } elseif ($request->status == 3) {
+            $employee = Employee::find($request->id);
             Employee::where('id', $request->id)->update([
                 "status" => $request->status,
-                "rent_id" => Auth::user()->id
+                "rented_id" => $employee->negotiating_id
             ]);
         } else {
             Employee::where('id', $request->id)->update([

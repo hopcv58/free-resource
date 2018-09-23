@@ -91,6 +91,8 @@ class JobController extends Controller
     {
         $levels = config('resources.level');
         $postions = config('resources.position');
+        $technicals = config('resources.technical_skill');
+        $tabActive = 'resource';
         $job = Job::find($id);
         $job->position = $request->position;
         $job->level = $request->level;
@@ -108,7 +110,9 @@ class JobController extends Controller
         ];
         $job->quantity = $request->quantity;
         $result = $job->save();
-        return view('job.detail', compact('job', 'levels', 'postions'));
+        $status = -1;
+        $titleForm = 'Update job jnfo';
+        return view('job.edit',compact('job', 'levels', 'postions', 'tabActive', 'technicals', 'status', 'titleForm'));
     }
 
     public function destroy()

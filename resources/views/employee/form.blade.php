@@ -60,11 +60,11 @@
         </div>
         <div class="col-md-3 no-padding">
             <select name="exp_unit" class="form-control">
-                <option value="month"
-                        @if(isset($employee) && $employee->experience['exp_unit'] == "month") selected @endif>Month
-                </option>
                 <option value="year"
                         @if(isset($employee) && $employee->experience['exp_unit'] == "year") selected @endif>Year
+                </option>
+                <option value="month"
+                        @if(isset($employee) && $employee->experience['exp_unit'] == "month") selected @endif>Month
                 </option>
             </select>
         </div>
@@ -104,7 +104,7 @@
     @else
         <div class="col-md-9">
             <div class="col-md-4 no-padding">
-                <input type="date" name="free_end" class="form-control">
+                <input type="date" name="free_begin" class="form-control">
             </div>
             <label class="col-sm-1 control-label">To</label>
             <div class="col-md-4 no-padding">

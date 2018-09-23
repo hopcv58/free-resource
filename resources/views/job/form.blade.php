@@ -91,7 +91,7 @@
 <div class="form-group">
     <label class="col-sm-2 control-label">Start from</label>
     @if(isset($job))
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="col-md-5 no-padding">
                 <input type="date" name="time_start" class="form-control"
                        @if($job->time_start) value="{{$job->time_start}}" @endif>
@@ -103,7 +103,7 @@
             </div>
         </div>
     @else
-        <div class="col-md-10">
+        <div class="col-md-9">
             <div class="col-md-4 no-padding">
                 <input type="date" name="time_end" class="form-control">
             </div>

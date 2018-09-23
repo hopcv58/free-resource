@@ -82,7 +82,6 @@ class EmployeeController extends Controller
 
     public function store(Request $request)
     {
-        //TODO: validate input
         $input = $request->all();
         $input['experience'] = [
             'exp_num' => $input['exp_num'],
@@ -96,6 +95,7 @@ class EmployeeController extends Controller
         $input['status'] = !isset($request->is_public);
         if ($request->fully_free) {
             $input['free_end'] = null;
+            $input['free_begin'] = null;
         }
         if ($request->is_public) {
             $input['status'] = 1;
@@ -103,15 +103,14 @@ class EmployeeController extends Controller
             $input['status'] = 0;
         }
         $result = Employee::create($input);
-        $employs = Employee::where('status', 0)->get();
-        $colorAvt = ['#e1663f', '#558ed5', '#92d050'];
+        $status = -1;
         $tabActive = 'resource';
         $levels = config('resources.level');
         $postions = config('resources.position');
         $technicals = config('resources.technical_skill');
         $success = 1;
         $titleForm = 'Add new employee';
-        return view('employee.create', compact('employee', 'levels', 'postions', 'tabActive', 'status', 'technicals', 'success','titleForm'));
+        return view('employee.create', compact('employee', 'status', 'levels', 'postions', 'tabActive', 'status', 'technicals', 'success','titleForm'));
     }
 
     public function show($id)
@@ -146,7 +145,8 @@ class EmployeeController extends Controller
         $employee->level = $request->level;
         $employee->skill = $request->skill;
         $employee->certificate = $request->certificate;
-        $employee->is_public = isset($request->is_public);
+        $employee->free_begin = $request->free_begin;
+        $employee->free_end = $request->free_end;
         $employee->experience = [
             "exp_num" => $request->exp_num,
             "exp_unit" => $request->exp_unit

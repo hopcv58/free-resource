@@ -101,7 +101,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <p class="col-sm-12" style="padding:  0 20px 20px 20px">Are you sure negotiating with this employee?</p>
+                            <p class="col-sm-12" style="padding:  0 20px 20px 20px">Are you sure to contract with this employee?</p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
