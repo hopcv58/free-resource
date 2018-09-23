@@ -5,7 +5,7 @@
 @section('content')
     <div class="row" style="margin-bottom: 20px">
         <div class="col-md-3 no-padding">
-            <input type="text" placeholder="Search name" id="search-name" name="search-name" class="form-control" onkeyup="resource.searchEmployByName()">
+            <input type="text" placeholder="Search name" id="search-name" name="search-name" class="form-control" onkeyup="resource.searchDeviceByName()">
         </div>
         <div class="col-md-3"></div>
         <div class="col-md-6 no-padding" style="text-align: right">
@@ -98,8 +98,8 @@
 @section('script')
     <script src="{{ asset('js/my_jquery.js') }}" type="text/javascript"></script>
     <script type="text/javascript">
-        {{--@if($employees)--}}
-        {{--resource.extend({!! $employees !!});--}}
-        {{--@endif--}}
+        @if($devices)
+        resource.extend({!! $devices !!});
+        @endif
     </script>
 @stop

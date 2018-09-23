@@ -163,6 +163,70 @@ var resource = {
         });
         $('#result-search').html(html);
     },
+    searchDeviceByName: function() {
+        var keySearch = $('#search-name').val().toLowerCase();
+        var result = [];
+        var arr = Object.values(resource.data.listEmployeeAvailable);
+        var html = '';
+        var number = 0;
+        $.each(arr, function( key, element ) {
+            var title = element.name.toLowerCase();
+            if (title.indexOf(keySearch) != -1) {
+                result.push(element);
+                var price = element['price']['price_num'] + '$/' + element['price']['price_unit'];
+                var url = window.location.origin + "/device/" + element.id + "/edit?status=" + element.status;
+                if (element.status == 0) {// allow update, delete
+                    number ++;
+                    html += "<tr>\n" +
+                        "                            <th scope=\"row\">" + number + "</th>\n" +
+                        "                            <td>" + element.name + "</td>\n" +
+                        "                            <td>" + element.branch + "</td>\n" +
+                        "                            <td>" + element.version + "}</td>\n" +
+                        "                            <td>" + element.detail + "</td>\n" +
+                        "                            <td>" + element.free_begin + "</td>\n" +
+                        "                            <td>" + element.free_end + "</td>\n" +
+                        "                            <td>" + price + "</td>\n" +
+                        "                            <td>\n" +
+                        "                                    <a href=\""+ url + "\"><span class=\"glyphicon glyphicon-edit\" aria-hidden=\"true\"></span></a>\n" +
+                        "                                    <a><span class=\"glyphicon glyphicon-trash\" aria-hidden=\"true\"></span></a>\n" +
+                        "                            </td>\n" +
+                        "                        </tr>";
+
+                } else if(element.status == 1) {// show link approve
+                    number ++;
+                    html += "<tr>\n" +
+                        "                            <th scope=\"row\">" + number + "</th>\n" +
+                        "                            <td>" + element.name + "</td>\n" +
+                        "                            <td>" + element.branch + "</td>\n" +
+                        "                            <td>" + element.version + "}</td>\n" +
+                        "                            <td>" + element.detail + "</td>\n" +
+                        "                            <td>" + element.free_begin + "</td>\n" +
+                        "                            <td>" + element.free_end + "</td>\n" +
+                        "                            <td>" + price + "</td>\n" +
+                        "                            <td>\n" +
+                        "                                    <a class=\"btn-approve\" onclick=\"resource.callTriggerApproveHireDevice(" + element.id + ")\">Approve</a>\n" +
+                        "                            </td>\n" +
+                        "                        </tr>";
+
+                } else {// no action
+                    number ++;
+                    html += "<tr>\n" +
+                        "                            <th scope=\"row\">{{$key + 1}}</th>\n" +
+                        "                            <td>{{$device->name}}</td>\n" +
+                        "                            <td>{{$device->branch}}</td>\n" +
+                        "                            <td>{{$device->version}}</td>\n" +
+                        "                            <td>{{$device->detail}}</td>\n" +
+                        "                            <td>@if($device->free_begin){{date('Y-m-d', strtotime($device->free_begin))}}@else Unknown @endif</td>\n" +
+                        "                            <td>@if($device->free_end){{date('Y-m-d', strtotime($device->free_end))}}@else Unknown @endif</td>\n" +
+                        "                            <td>{{number_format($device->price['price_num'])}}$/{{$device->price['price_unit']}}</td>\n" +
+                        "                            <td>\n" +
+                        "                            </td>\n" +
+                        "                        </tr>";
+                }
+            }
+        });
+        $('#result-search').html(html);
+    },
     rendHintModal: function (jobId) {
         $.ajax({
             method: 'GET',
