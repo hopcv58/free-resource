@@ -72,7 +72,8 @@ class EmployeeController extends Controller
         $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
         $status = -1;
-        return view('employee.create', compact('levels', 'postions', 'tabActive', 'status', 'technicals'));
+        $titleForm = 'Add new employee';
+        return view('employee.create', compact('levels', 'postions', 'tabActive', 'status', 'technicals', 'titleForm'));
     }
 
     public function store(Request $request)
@@ -117,8 +118,9 @@ class EmployeeController extends Controller
         $postions = config('resources.position');
         $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
-        $status = $request ? $request->status : 0;
-        return view('employee.edit', compact('employee', 'levels', 'postions', 'tabActive', 'status', 'technicals'));
+        $status = $employee->status;
+        $titleForm = 'Update employee info';
+        return view('employee.edit', compact('titleForm','employee', 'levels', 'postions', 'tabActive', 'status', 'technicals'));
     }
 
     public function update(Request $request, $id)

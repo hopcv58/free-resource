@@ -32,7 +32,6 @@ class DeviceController extends Controller
         $technicals = config('resources.technical_skill');
         $postions = config('resources.position');
         $levels = config('resources.level');
-
         return view('device.index', compact('devices', 'colorAvt', 'tabActive', 'postions', 'technicals', 'levels'));
     }
 
@@ -41,7 +40,9 @@ class DeviceController extends Controller
         $postions = config('resources.position');
         $branches = config('resources.branch');
         $tabActive = 'resource';
-        return view('device.create', compact('branches', 'tabActive','postions'));
+        $status = -1;
+        $titleForm = 'Add new device';
+        return view('device.create', compact('branches', 'tabActive','postions', 'status', 'titleForm'));
     }
 
     public function store(Request $request)
@@ -68,7 +69,8 @@ class DeviceController extends Controller
         $device = Device::find($id);
         $branches = config('resources.branch');
         $tabActive = 'resource';
-        return view('device.detail', compact('branches', 'device', 'tabActive'));
+        $titleForm = 'Update device info';
+        return view('device.detail', compact('branches', 'device', 'tabActive', 'titleForm'));
     }
 
     public function edit($id)
@@ -76,7 +78,9 @@ class DeviceController extends Controller
         $device = Device::find($id);
         $branches = config('resources.branch');
         $tabActive = 'resource';
-        return view('device.edit', compact('device','branches', 'tabActive'));
+        $titleForm = 'Update device info';
+        $status = $device->status;
+        return view('device.edit', compact('device','branches', 'tabActive', 'titleForm', 'status'));
     }
 
     public function update(Request $request, $id)

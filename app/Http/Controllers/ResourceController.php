@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Device;
 use App\Models\Employee;
 use App\Models\Job;
 use App\Repositories\EmployeeRepository;
@@ -140,5 +141,27 @@ class ResourceController extends Controller
         }
         $employs = $employs->orderBy('id', 'DESC')->get();
         return view('resource.hint-table', compact('employs'));
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function getDevice(Request $request)
+    {
+        $tabActive = 'resource';
+
+        if (!isset($request->status)) {
+            $status = 0;
+        } else {
+            $status = $request->status;
+        }
+        $condition = [
+            'status' => $status,
+            'company_id' => Auth::id()
+        ];
+        $devices = Device::where($condition)->orderBy('id', 'DESC')->get();
+
+        return view('resource.device', compact('tabActive', 'devices', 'status'));
     }
 }

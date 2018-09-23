@@ -28,3 +28,4 @@ Route::get('/resource/job', 'ResourceController@jobStatus')->name('resource.job'
 Route::get('/resource/job/negotiating', 'ResourceController@jobNegotiating')->name('resource.job.negotiating');
 Route::get('/resource/job/hired', 'ResourceController@jobHired')->name('resource.job.hired');
 Route::get('/job/{id}/hint', 'ResourceController@rendHintModal')->name('job.hint');
+Route::get('/resource/device', 'ResourceController@getDevice')->name('resource.device');

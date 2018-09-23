@@ -30,9 +30,10 @@
             </ul>
             <p class="menu-sidebar">DEVICE MANAGE</p>
             <ul>
-                <li><a href="">Device Available</a></li>
-                <li><a href="">Device In Negotiate</a></li>
-                <li><a href="">Device Hired</a></li>
+                <li><a href="{{route('resource.device')}}" @if($status == 0 && Request::route()->getName() == 'resource.device') class="link-selected" @endif>Device Available</a></li>
+                <li><a href="{{route('resource.device') . '?status=1'}}" @if($status == 1 && Request::route()->getName() == 'resource.device') class="link-selected" @endif>Device In Negotiate</a></li>
+                <li><a href="{{route('resource.device'). '?status=2'}}" @if($status == 2 && Request::route()->getName() == 'resource.device') class="link-selected" @endif>Device Hired</a></li>
+                <li><a href="{{route('resource.device'). '?status=3'}}" @if($status == 3 && Request::route()->getName() == 'resource.device') class="link-selected" @endif>Device Completed</a></li>
             </ul>
         </div>
     </div>

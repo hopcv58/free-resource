@@ -38,7 +38,8 @@ class JobController extends Controller
         $postions = config('resources.position');
         $technicals = config('resources.technical_skill');
         $tabActive = 'resource';
-        return view('job.create', compact('levels', 'postions', 'tabActive', 'technicals'));
+        $status = -1;
+        return view('job.create', compact('levels', 'postions', 'tabActive', 'technicals', 'status'));
     }
 
     public function store(Request $request)
